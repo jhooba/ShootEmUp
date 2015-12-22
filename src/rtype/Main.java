@@ -16,6 +16,8 @@ import rtype.entity.*;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class Main {
   private static final int SCREEN_WIDTH = 800;
@@ -24,6 +26,7 @@ public class Main {
   private static final int BYTES_PER_PIXEL = 3;
 
   // Default values for sprites
+  private static float DEFAULT_Z = 0;
   private static final Vector2f DEFAULT_SCROLLING_SPEED = new Vector2f(-5, 0);
 
   // This is the address where screen copy is stored
@@ -59,6 +62,7 @@ public class Main {
   private float deltas = 0;
 
   private boolean gameOff = false;
+  private float fadeAlpha = 0;
 
   public static void main(String[] args) {
     Main inst = new Main();
@@ -130,8 +134,86 @@ public class Main {
       heartBeat();
       getEntries();
       update();
+      checkCollisions();
+      render();
     }
     Display.destroy();
+  }
+
+  private void render() {
+    GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);  // Clear the Screen and the Depth Buffer
+    background.render();
+
+    // Make background darker
+    fadeAlpha = 0.65f;
+    fadeScreen(false);
+    fadeAlpha = 0;
+  }
+
+  private void fadeScreen(boolean drawFb) {
+    if (fadeAlpha > 0.1) {
+      GL11.glLoadIdentity();
+      GL11.glTranslatef(0, 0, DEFAULT_Z);
+      GL11.glColor4f(0, 0, 0, fadeAlpha / 1.2f);
+      GL11.glDisable(GL11.GL_TEXTURE_2D);
+      GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+      GL11.glBegin(GL11.GL_QUADS);
+      {
+        GL11.glVertex2f(SCREEN_WIDTH / 2, -SCREEN_HEIGHT / 2);
+        GL11.glVertex2f(-SCREEN_WIDTH / 2, -SCREEN_HEIGHT / 2);
+        GL11.glVertex2f(-SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+        GL11.glVertex2f(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+      }
+      GL11.glEnd();
+      GL11.glColor4f(1, 1, 1, 1);
+      GL11.glEnable(GL11.GL_TEXTURE_2D);
+      GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+    }
+    if (player != null && player.orb != null && player.orb.fb != null
+        && player.orb.fb.displayAnimation && drawFb) {
+      player.orb.fb.updateTick();
+      player.orb.fb.draw(fadeAlpha * 2);
+    }
+  }
+
+  private void checkCollisions() {
+    // Check bullets with enemies
+    ArrayList<Entity> bulletsArray = bullets.entities;
+    ArrayList<Entity> enemiesArray = enemies.entities;
+    for (int i = 0; i < bulletsArray.size(); ++i) {
+      for (int j = 0; j < enemiesArray.size(); ++j) {
+        if (j < 0) {
+          continue;
+        }
+        if (i < 0) {
+          break;
+        }
+        Entity currentBullet = bulletsArray.get(i);
+        Entity currentEnemy = enemiesArray.get(j);
+        if (Collision.boxBoxOverlap(currentBullet, currentEnemy)) {
+          ++player.hiScore;
+          if (currentBullet.collided(currentEnemy)) {
+            --i;
+          }
+          if (currentEnemy.collided(currentBullet)) {
+            --j;
+          }
+        }
+      }
+    }
+    textHiScore.setString("HISCORE:" + player.hiScore);
+
+    // Check players with bonuses
+    ArrayList<Entity> bonusArray = bonus.entities;
+    for (int i = 0; i < bonusArray.size(); ++i) {
+      Entity currentBonus = bonusArray.get(i);
+      if (Collision.boxBoxOverlap(player, currentBonus)) {
+        if (currentBonus.collided(player)) {
+          --i;
+          player.collided(currentBonus);
+        }
+      }
+    }
   }
 
   private void update() {

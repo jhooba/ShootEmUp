@@ -15,4 +15,8 @@ public class Entity {
 
   public void unSpawn() {
   }
+
+  public boolean collided(Entity currentEnemy) {
+    return false;
+  }
 }
