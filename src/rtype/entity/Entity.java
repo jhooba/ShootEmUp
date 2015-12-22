@@ -19,4 +19,10 @@ public class Entity {
   public boolean collided(Entity currentEnemy) {
     return false;
   }
+
+  public void updateTick() {
+  }
+
+  public void draw(float v) {
+  }
 }

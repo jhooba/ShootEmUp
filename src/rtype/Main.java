@@ -59,10 +59,14 @@ public class Main {
   // Measure time elapsed since last frame renderer
   // This is the heart variable of the engine
   private float tick;
-  private float deltas = 0;
 
   private boolean gameOff = false;
   private float fadeAlpha = 0;
+
+  // Variables used to calculate fps
+  private int frames;
+  private float deltas = 0;
+  private float fps = 0;
 
   public static void main(String[] args) {
     Main inst = new Main();
@@ -136,6 +140,16 @@ public class Main {
       update();
       checkCollisions();
       render();
+
+      ++frames;
+      if (frames == 50) {
+        fps = frames / deltas;
+        frames = 0;
+        deltas = 0;
+        textFPS.setString("fps:" + (int)fps);
+      }
+      Display.update();
+      generator.generate();
     }
     Display.destroy();
   }
@@ -148,6 +162,125 @@ public class Main {
     fadeAlpha = 0.65f;
     fadeScreen(false);
     fadeAlpha = 0;
+
+    enemies.render();
+    bonus.render();
+    fx.render();
+    // This make a copy of the screen in a texture
+    // It is used later for deformation effects
+    saveScreen();
+    applyDistortions();
+    bullets.render();
+    frontground.render();
+    text.render();
+    fadeScreen(true);
+  }
+
+  @SuppressWarnings("UnnecessaryLocalVariable")
+  private void applyDistortions() {
+    if (player == null) {
+      return;
+    }
+    float chargeP = player.power / PlayerShip.MAX_POWER;
+    float width = 350 * chargeP;
+    float height = 200 * chargeP;
+    float middleXOnScreen = width / 2 * chargeP;
+
+    float posX = player.position.x + 25;
+    float posY = player.position.y - height / 2;
+
+    float textOutXLo = (posX + SCREEN_WIDTH / 2) / 1024;
+    float textOutXHi = (posX + width + SCREEN_WIDTH / 2) / 1024;
+    float textOutYLo = (posY + SCREEN_HEIGHT / 2) / 1024;
+    float textOutYHi = (posY + height + SCREEN_HEIGHT / 2) / 1024;
+
+    float textInXLo = (posX + width / 2 + SCREEN_WIDTH / 2) / 1024;
+    float textInXHi = (posX + width / 2 + 1 + SCREEN_WIDTH / 2) / 1024;
+    float textInYLo = (posY + height / 2 + SCREEN_HEIGHT / 2) / 1024;
+    float textInYHi = (posY + height / 2 + 1 + SCREEN_HEIGHT / 2) / 1024;
+
+    float scrOutXLo = posX;
+    float scrOutXHi = posX + width;
+    float scrOutYLo = posY;
+    float scrOutYHi = posY + height;
+
+    float scrInXLo = posX + middleXOnScreen;
+    float scrInXHi = posX + middleXOnScreen + 1;
+    float scrInYLo = posY + height / 2;
+    float scrInYHi = posY + height / 2 + 1;
+
+    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+    GL11.glColor4f(1, 1, 1, 0.75f);
+    GL11.glBegin(GL11.GL_QUADS);
+    {
+      GL11.glTexCoord2f(textInXHi, textInYHi);
+      GL11.glVertex2f(scrInXHi, scrInYHi);  // lower right
+
+      GL11.glTexCoord2f(textOutXHi, textOutYHi);
+      GL11.glVertex2f(scrOutXHi, scrOutYHi);  // lower left
+
+      GL11.glTexCoord2f(textOutXHi, textOutYLo);
+      GL11.glVertex2f(scrOutXHi, scrOutYLo);  // upper left
+
+      GL11.glTexCoord2f(textInXHi, textInYLo);
+      GL11.glVertex2f(scrInXHi, scrInYLo);  // upper right
+    }
+    GL11.glEnd();
+
+    GL11.glBegin(GL11.GL_QUADS);
+    {
+      GL11.glTexCoord2f(textInXHi, textInYLo);
+      GL11.glVertex2f(scrInXHi, scrInYLo);  // lower right
+
+      GL11.glTexCoord2f(textOutXHi, textOutYLo);
+      GL11.glVertex2f(scrOutXHi, scrOutYLo);  // lower left
+
+      GL11.glTexCoord2f(textOutXLo, textOutYLo);
+      GL11.glVertex2f(scrOutXLo, scrOutYLo);  // upper left
+
+      GL11.glTexCoord2f(textInXLo, textInYLo);
+      GL11.glVertex2f(scrInXLo, scrInYLo);  // upper right
+    }
+    GL11.glEnd();
+
+    GL11.glBegin(GL11.GL_QUADS);
+    {
+      GL11.glTexCoord2f(textInXLo, textInYLo);
+      GL11.glVertex2f(scrInXLo, scrInYLo);  // lower right
+
+      GL11.glTexCoord2f(textOutXLo, textOutYHi);
+      GL11.glVertex2f(scrOutXLo, scrOutYHi);  // lower left
+
+      GL11.glTexCoord2f(textOutXHi, textOutYHi);
+      GL11.glVertex2f(scrOutXHi, scrOutYHi);  // upper left
+
+      GL11.glTexCoord2f(textInXHi, textInYHi);
+      GL11.glVertex2f(scrInXHi, scrInYHi);  // upper right
+    }
+    GL11.glEnd();
+
+    GL11.glBegin(GL11.GL_QUADS);
+    {
+      GL11.glTexCoord2f(textInXLo, textInYLo);
+      GL11.glVertex2f(scrInXLo, scrInYLo);  // lower right
+
+      GL11.glTexCoord2f(textOutXLo, textOutYLo);
+      GL11.glVertex2f(scrOutXLo, scrOutYLo);  // lower left
+
+      GL11.glTexCoord2f(textOutXLo, textOutYHi);
+      GL11.glVertex2f(scrOutXLo, scrOutYHi);  // upper left
+
+      GL11.glTexCoord2f(textInXLo, textInYHi);
+      GL11.glVertex2f(scrInXLo, scrInYHi);  // upper right
+    }
+    GL11.glEnd();
+    GL11.glColor4f(1, 1, 1, 1);
+  }
+
+  private void saveScreen() {
+    GL11.glLoadIdentity();
+    GL11.glBindTexture(GL11.GL_TEXTURE_2D, screenTextureId);
+    GL11.glCopyTexSubImage2D(GL11.GL_TEXTURE_2D, 0, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
   }
 
   private void fadeScreen(boolean drawFb) {

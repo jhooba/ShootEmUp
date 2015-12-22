@@ -19,4 +19,7 @@ public class GeneratorSet {
 
   public void removeGenerator(GeneratorBase gen) {
   }
+
+  public void generate() {
+  }
 }
