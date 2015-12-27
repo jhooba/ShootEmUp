@@ -6,10 +6,15 @@ import rtype.Layer;
 /**
  * Created by jhooba on 2015-12-20.
  */
-public class Entity {
+public abstract class Entity implements IEntity {
   public Vector2f position = new Vector2f();
+  public float rotation = 0;
 
   public void spawn(Vector2f position, Vector2f speed, Layer layer) {
+
+  }
+
+  public void spawn(Vector2f vector2f, Vector2f vector2f1, float v, Layer frontground) {
 
   }
 

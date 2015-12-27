@@ -7,4 +7,9 @@ public class LadyBirdGenerator extends GeneratorBase {
   public LadyBirdGenerator(float delay) {
     super(delay);
   }
+
+  @Override
+  public void generateEntities() {
+
+  }
 }

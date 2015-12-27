@@ -18,9 +18,10 @@ import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Random;
 
 public class Main {
-  private static final int SCREEN_WIDTH = 800;
+  public static final int SCREEN_WIDTH = 800;
   private static final int SCREEN_HEIGHT = 600;
   private static final boolean FULL_SCREEN = false;
   private static final int BYTES_PER_PIXEL = 3;
@@ -28,57 +29,54 @@ public class Main {
   // Default values for sprites
   private static float DEFAULT_Z = 0;
   private static final Vector2f DEFAULT_SCROLLING_SPEED = new Vector2f(-5, 0);
+  public static final Random RANDOM = new Random(System.currentTimeMillis());
 
   // This is the address where screen copy is stored
-  private int screenTextureId = 0;
+  private static int screenTextureId = 0;
   // Generators generate entity for the game
-  private GeneratorSet generator;
-  private TextureLoader textureLoader;
+  private static GeneratorSet generator;
+  private static TextureLoader textureLoader;
 
   // This is the player's sprite
-  private PlayerShip player;
+  private static PlayerShip player;
   // Set of layers, drawn in a different order ( see render method)
-  private Layer bullets = new Layer();
-  private Layer enemies = new Layer();
-  private Layer fx = new Layer();
-  private Layer bonus = new Layer();
-  private Layer background = new Layer();
-  private Layer frontground = new Layer();
-  private Layer text = new Layer();
+  private static Layer bullets = new Layer();
+  public static Layer enemies = new Layer();
+  private static Layer fx = new Layer();
+  private static Layer bonus = new Layer();
+  public static Layer background = new Layer();
+  public static Layer frontground = new Layer();
+  private static Layer text = new Layer();
   // Text object used to display fps, score and entity total count
-  private Text textFPS;
-  private Text textHiScore;
-  private TextEntityCounter entitiesCount;
-  private Text pause;
+  private static Text textFPS;
+  private static Text textHiScore;
+  private static TextEntityCounter entitiesCount;
+  private static Text pause;
 
-  private GeneratorBase homingGenerator = new HomingMissileGenerator();
-  private GeneratorBase ladyBirdGenerator = new LadyBirdGenerator(30);
+  private static GeneratorBase homingGenerator = new HomingMissileGenerator();
+  private static GeneratorBase ladyBirdGenerator = new LadyBirdGenerator(30);
 
-  private Timer timer = new Timer();
-  private float lastTime = timer.getTime();
+  private static Timer timer = new Timer();
+  private static float lastTime = timer.getTime();
   // Measure time elapsed since last frame renderer
   // This is the heart variable of the engine
-  private float tick;
+  public static float tick;
 
-  private boolean gameOff = false;
-  private float fadeAlpha = 0;
+  private static boolean gameOff = false;
+  private static float fadeAlpha = 0;
 
   // Variables used to calculate fps
-  private int frames;
-  private float deltas = 0;
-  private float fps = 0;
+  private static int frames;
+  private static float deltas = 0;
+  private static float fps = 0;
 
   public static void main(String[] args) {
-    Main inst = new Main();
-    inst.run();
-  }
-
-  private Main() {
     init();
     initGL();
+    run();
   }
 
-  private void init() {
+  private static void init() {
     Mouse.setGrabbed(false);
     try {
       createWindow(SCREEN_WIDTH, SCREEN_HEIGHT, FULL_SCREEN);
@@ -101,7 +99,7 @@ public class Main {
     }
   }
 
-  private void initGL() {
+  private static void initGL() {
     GL11.glEnable(GL11.GL_TEXTURE_2D);
     GL11.glClearColor(0.f, 0.f, 0.f, 0.f);
     GL11.glClearDepth(1.f);
@@ -118,11 +116,11 @@ public class Main {
     textureLoader.init();
   }
 
-  private void run() {
-    Intro intro = new Intro(this);
+  private static void run() {
+    Intro intro = new Intro();
     intro.play();
 
-    BonusDesc bonusDesc = new BonusDesc(this);
+    BonusDesc bonusDesc = new BonusDesc();
     bonusDesc.play();
     
     addBasicEntities();
@@ -154,7 +152,7 @@ public class Main {
     Display.destroy();
   }
 
-  private void render() {
+  private static void render() {
     GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);  // Clear the Screen and the Depth Buffer
     background.render();
 
@@ -177,7 +175,7 @@ public class Main {
   }
 
   @SuppressWarnings("UnnecessaryLocalVariable")
-  private void applyDistortions() {
+  private static void applyDistortions() {
     if (player == null) {
       return;
     }
@@ -277,13 +275,13 @@ public class Main {
     GL11.glColor4f(1, 1, 1, 1);
   }
 
-  private void saveScreen() {
+  private static void saveScreen() {
     GL11.glLoadIdentity();
     GL11.glBindTexture(GL11.GL_TEXTURE_2D, screenTextureId);
     GL11.glCopyTexSubImage2D(GL11.GL_TEXTURE_2D, 0, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
   }
 
-  private void fadeScreen(boolean drawFb) {
+  private static void fadeScreen(boolean drawFb) {
     if (fadeAlpha > 0.1) {
       GL11.glLoadIdentity();
       GL11.glTranslatef(0, 0, DEFAULT_Z);
@@ -309,7 +307,7 @@ public class Main {
     }
   }
 
-  private void checkCollisions() {
+  private static void checkCollisions() {
     // Check bullets with enemies
     ArrayList<Entity> bulletsArray = bullets.entities;
     ArrayList<Entity> enemiesArray = enemies.entities;
@@ -349,7 +347,7 @@ public class Main {
     }
   }
 
-  private void update() {
+  private static void update() {
     bullets.update();
     enemies.update();
     fx.update();
@@ -359,25 +357,25 @@ public class Main {
     text.update();
   }
 
-  private void getEntries() {
+  private static void getEntries() {
     if (exitRequested()) {
       gameOff = true;
     }
     EventManager.instance().checkEvents();
   }
 
-  private boolean exitRequested() {
+  private static boolean exitRequested() {
     return Keyboard.isKeyDown(Keyboard.KEY_ESCAPE) || Display.isCloseRequested();
   }
 
-  private void heartBeat() {
+  private static void heartBeat() {
     Timer.tick();
     tick = timer.getTime() - lastTime;
     deltas += tick;
     lastTime = timer.getTime();
   }
 
-  private void addControlKeys() {
+  private static void addControlKeys() {
     KeyListener pauseKeyEvent = new KeyListener(){
       @Override
       public void onKeyDown() {
@@ -418,7 +416,7 @@ public class Main {
     EventManager.instance().addListener(Keyboard.KEY_F2, enemiesKeyEvent);
   }
 
-  private void addBasicEntities() {
+  private static void addBasicEntities() {
     player = new PlayerShip();
     player.spawn(new Vector2f(-150, -100), new Vector2f(0, 0), bullets);
     player.addBooster();
@@ -433,7 +431,7 @@ public class Main {
     entitiesCount.spawn(new Vector2f(SCREEN_WIDTH / 2 + 20, SCREEN_WIDTH / 2 + 20), new Vector2f(0, 0), text);
   }
 
-  private void createWindow(int screenWidth, int screenHeight, boolean fullScreen) throws LWJGLException {
+  private static void createWindow(int screenWidth, int screenHeight, boolean fullScreen) throws LWJGLException {
     if (!fullScreen) {
       Display.setDisplayMode(new DisplayMode(screenWidth, screenHeight));
     } else {
@@ -452,7 +450,7 @@ public class Main {
     Display.create();
   }
 
-  private void createOffScreenBuffer() {
+  private static void createOffScreenBuffer() {
     ByteBuffer scratch = ByteBuffer.allocateDirect(1024 * 1024 * BYTES_PER_PIXEL);
     IntBuffer buf = ByteBuffer.allocateDirect(12).order(ByteOrder.nativeOrder()).asIntBuffer();
     GL11.glGenTextures(buf);
