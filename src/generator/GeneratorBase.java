@@ -23,4 +23,8 @@ abstract public class GeneratorBase {
   public boolean isDone() {
     return done;
   }
+
+  protected void setDone() {
+    done = true;
+  }
 }

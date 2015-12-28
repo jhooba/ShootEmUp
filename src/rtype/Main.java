@@ -17,7 +17,6 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Random;
 
 public class Main {
@@ -26,8 +25,6 @@ public class Main {
   private static final boolean FULL_SCREEN = false;
   private static final int BYTES_PER_PIXEL = 3;
 
-  // Default values for sprites
-  private static float DEFAULT_Z = 0;
   private static final Vector2f DEFAULT_SCROLLING_SPEED = new Vector2f(-5, 0);
   public static final Random RANDOM = new Random(System.currentTimeMillis());
 
@@ -68,7 +65,6 @@ public class Main {
   // Variables used to calculate fps
   private static int frames;
   private static float deltas = 0;
-  private static float fps = 0;
 
   public static void main(String[] args) {
     init();
@@ -141,10 +137,10 @@ public class Main {
 
       ++frames;
       if (frames == 50) {
-        fps = frames / deltas;
+        float fps = frames / deltas;
         frames = 0;
         deltas = 0;
-        textFPS.setString("fps:" + (int)fps);
+        textFPS.setString("fps:" + (int) fps);
       }
       Display.update();
       generator.generate();
@@ -284,6 +280,7 @@ public class Main {
   private static void fadeScreen(boolean drawFb) {
     if (fadeAlpha > 0.1) {
       GL11.glLoadIdentity();
+      float DEFAULT_Z = 0;
       GL11.glTranslatef(0, 0, DEFAULT_Z);
       GL11.glColor4f(0, 0, 0, fadeAlpha / 1.2f);
       GL11.glDisable(GL11.GL_TEXTURE_2D);

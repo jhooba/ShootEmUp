@@ -12,7 +12,6 @@ import rtype.entity.LadyBird;
 public class EnemyWave extends GeneratorBase {
   // Rate at which generating entities.
   public static float RATE = 2f;
-  private static int MAX_UNIT_GENERATED = 5;
   private static final Vector2f DEFAULT_LADY_SPEED = new Vector2f(-76.3f,0);
 
   private final int x;
@@ -27,12 +26,14 @@ public class EnemyWave extends GeneratorBase {
   @Override
   public void generateEntities() {
     tickAccumulator += Main.tick;
+    int MAX_UNIT_GENERATED = 5;
     if (tickAccumulator > RATE) {
       tickAccumulator = 0;
       LadyBird lady = new LadyBird();
       if (generatedUnitCounter == MAX_UNIT_GENERATED) {
         lady.setPresetBonus(BonusFactory.createBonus(Main.RANDOM.nextInt(Bonus.BONUS_COUNT)));
       }
+      //noinspection SuspiciousNameCombination
       lady.spawn(new Vector2f(Main.SCREEN_WIDTH / 2 + 10, x), DEFAULT_LADY_SPEED, Main.enemies);
       ++generatedUnitCounter;
     }

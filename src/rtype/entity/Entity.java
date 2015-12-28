@@ -30,4 +30,7 @@ public abstract class Entity implements IEntity {
 
   public void draw(float v) {
   }
+
+  public void flipYAxis() {
+  }
 }

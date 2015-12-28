@@ -27,9 +27,8 @@ public class GeneratorSet {
 
   public void generate() {
     tickAccumulator += Main.tick;
-    GeneratorBase gen = null;
     for (Iterator<GeneratorBase> itor = generators.iterator(); itor.hasNext(); ) {
-      gen = itor.next();
+      GeneratorBase gen = itor.next();
       if (tickAccumulator > gen.getDelay()) {
         gen.generateEntities();
       }
