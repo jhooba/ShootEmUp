@@ -19,4 +19,8 @@ public class EventManager {
   public void checkEvents() {
 
   }
+
+  public void clear() {
+
+  }
 }

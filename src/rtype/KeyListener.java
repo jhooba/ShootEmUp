@@ -5,6 +5,6 @@ package rtype;
  */
 abstract public class KeyListener {
   public void onKeyDown() {}
-  public void keyPressed() {}
   public void onKeyUp() {}
+  public void keyPressed() {}
 }

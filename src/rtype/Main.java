@@ -21,7 +21,7 @@ import java.util.Random;
 
 public class Main {
   public static final int SCREEN_WIDTH = 800;
-  private static final int SCREEN_HEIGHT = 600;
+  public static final int SCREEN_HEIGHT = 600;
   private static final boolean FULL_SCREEN = false;
   private static final int BYTES_PER_PIXEL = 3;
 
@@ -53,13 +53,13 @@ public class Main {
   private static GeneratorBase homingGenerator = new HomingMissileGenerator();
   private static GeneratorBase ladyBirdGenerator = new LadyBirdGenerator(30);
 
-  private static Timer timer = new Timer();
+  static Timer timer = new Timer();
   private static float lastTime = timer.getTime();
   // Measure time elapsed since last frame renderer
   // This is the heart variable of the engine
   public static float tick;
 
-  private static boolean gameOff = false;
+  static boolean gameOff = false;
   private static float fadeAlpha = 0;
 
   // Variables used to calculate fps
@@ -148,7 +148,7 @@ public class Main {
     Display.destroy();
   }
 
-  private static void render() {
+  static void render() {
     GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);  // Clear the Screen and the Depth Buffer
     background.render();
 
@@ -344,7 +344,7 @@ public class Main {
     }
   }
 
-  private static void update() {
+  static void update() {
     bullets.update();
     enemies.update();
     fx.update();
@@ -361,7 +361,7 @@ public class Main {
     EventManager.instance().checkEvents();
   }
 
-  private static boolean exitRequested() {
+  static boolean exitRequested() {
     return Keyboard.isKeyDown(Keyboard.KEY_ESCAPE) || Display.isCloseRequested();
   }
 

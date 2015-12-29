@@ -26,11 +26,18 @@ public abstract class Entity implements IEntity {
   }
 
   public void updateTick() {
+
   }
 
   public void draw(float v) {
   }
 
   public void flipYAxis() {
+  }
+
+  public void update() {
+  }
+
+  public void draw() {
   }
 }
