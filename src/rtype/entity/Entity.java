@@ -11,6 +11,10 @@ import rtype.Texture;
  */
 public abstract class Entity implements IEntity {
   private static final int ROTATION_SPEED = 260;
+  private static final Vector2f SPEED_UP = new Vector2f(60, 35);
+  private static final Vector2f SPEED_DOWN = new Vector2f(30, -23);
+
+  protected final int type;
   public final Vector2f position = new Vector2f();
   public final Vector2f speed = new Vector2f();
 
@@ -23,16 +27,30 @@ public abstract class Entity implements IEntity {
 
   private float tick;
 
+  private float ratio = 1.f;
+  private float originalWidth;
+  private float originalHeight;
+
+  private float freezeSpeed = 0;
   public float rotation = 0;
   public float width;
   public float height;
-  private float rotationSpeed = 0;
 
+  private float rotationSpeed = 0;
   private Texture texture;
   private float damage = 1;
   private float life = 1;
+  private boolean freezing = false;
+  private boolean frozen = false;
+  private float frozenTickCounter = 0;
+  private float freezeDuration = 0;
+  private float freezingPercentage = 0;
 
-  public void spawnint(Vector2f position, Vector2f speed, Layer layer) {
+  protected Entity(int type) {
+    this.type = type;
+  }
+
+  public void spawn(Vector2f position, Vector2f speed, Layer layer) {
     this.position.x = position.x;
     this.position.y = position.y;
 
@@ -106,14 +124,65 @@ public abstract class Entity implements IEntity {
     if (life < 0) {
       unSpawn();
 
-      Explosion ex = new Explosion(Main.RANDOM.nextInt(2) + EXPLOSION1);
+      Explosion ex = new Explosion(Main.RANDOM.nextInt(2) + EXPLOSION_1);
       ex.spawn(position, speed, Main.RANDOM.nextInt(ROTATION_SPEED), Main.frontground);
 
-      EnemyPiece ep1 = new EnemyPiece(Main.RANDOM.nextInt(8) + ENEMY_PIECE1);
+      EnemyPiece ep = new EnemyPiece(Main.RANDOM.nextInt(8) + ENEMY_PIECE_1);
+      ep.spawn(position, SPEED_UP, Main.RANDOM.nextInt(ROTATION_SPEED), Main.frontground);
+
+      ep = new EnemyPiece(Main.RANDOM.nextInt(8) + ENEMY_PIECE_1);
+      ep.spawn(position, SPEED_DOWN, Main.RANDOM.nextInt(ROTATION_SPEED), Main.frontground);
+
+      ep = new EnemyPiece(Main.RANDOM.nextInt(8) + ENEMY_PIECE_1);
+      ep.spawn(position, new Vector2f(entity.speed.x, speed.y), Main.RANDOM.nextInt(ROTATION_SPEED), Main.frontground);
+
+      ep = new EnemyPiece(Main.RANDOM.nextInt(8) + ENEMY_PIECE_1);
+      ep.spawn(position, new Vector2f(entity.speed.x, -speed.y), Main.RANDOM.nextInt(ROTATION_SPEED), Main.frontground);
+      return true;
     }
+    return false;
   }
 
   public void updateTick() {
+    if (freezing) {
+      if (frozen) {
+        // You may wonder why I multiply by 10.
+        // It is because on very "fast" computer, fps
+        // may be so high and tick so small that
+        // frozenTickCounter get no updated and
+        // unfreeze never happen
+        frozenTickCounter += tick * 10;
+        if (frozenTickCounter > freezeDuration) {
+          frozen = false;
+          frozenTickCounter = 0;
+          // Have to start defroze
+          freezeSpeed = -freezeSpeed;
+        } else {
+          tick = 0;
+        }
+      } else {
+        // Update tick according to freeze Speed
+        // Note this can be the froze or defroze process...
+        freezingPercentage += Main.tick * freezeSpeed;
+        tick = Main.tick - freezingPercentage * Main.tick;
+        if (tick < 0) {
+          frozen = true;
+          unSpawn();
+          spawn(position, speed, Main.bullets);
+        }
+        if (tick > Main.tick) {
+          freezingPercentage = 0;
+          freezing = false;
+        }
+      }
+    } else {
+      tick = Main.tick;
+    }
+  }
 
+  protected void setRatio(float newRatio) {
+    ratio = newRatio;
+    width = originalWidth * ratio;
+    height = originalHeight * ratio;
   }
 }

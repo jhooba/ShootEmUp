@@ -33,12 +33,12 @@ public class Main {
   private static int screenTextureId = 0;
   // Generators generate entity for the game
   private static GeneratorSet generator;
-  private static TextureLoader textureLoader;
+  public static TextureLoader textureLoader;
 
   // This is the player's sprite
   private static PlayerShip player;
   // Set of layers, drawn in a different order ( see render method)
-  private static Layer bullets = new Layer();
+  public static Layer bullets = new Layer();
   public static Layer enemies = new Layer();
   private static Layer fx = new Layer();
   private static Layer bonus = new Layer();
