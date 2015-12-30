@@ -11,6 +11,7 @@ import rtype.entity.Text;
  * Created by jhooba on 2015-12-20.
  */
 public class Intro {
+  private static final Vector2f IMMOBILE = new Vector2f(0, 0);
   private final Layer layer;
   private boolean introOn = true;
 
@@ -28,21 +29,20 @@ public class Intro {
     Text commandLabel4 = new Text("Arrow Key : Move");
     Text commandLabel5 = new Text("Space     : Fire ( maintain to charge)");
     Text commandLabel6 = new Text("Press SPACE to Start !!");
-    Vector2f immobile = new Vector2f(0, 0);
 
     int pointY = 240;
     int pointX = -270;
     final int INTERSPACE = 20;
 
-    title.spawn(new Vector2f(pointX + 160, pointY -= INTERSPACE * 4), immobile, layer);
-    commandLabel.spawn(new Vector2f(pointX + 200, pointY -= INTERSPACE * 4), immobile, layer);
-    commandLabel0.spawn(new Vector2f(pointX, pointY -= INTERSPACE * 2), immobile, layer);
-    commandLabel1.spawn(new Vector2f(pointX, pointY -= INTERSPACE), immobile, layer);
-    commandLabel2.spawn(new Vector2f(pointX, pointY -= INTERSPACE), immobile, layer);
-    commandLabel3.spawn(new Vector2f(pointX, pointY -= INTERSPACE), immobile, layer);
-    commandLabel4.spawn(new Vector2f(pointX, pointY -= INTERSPACE), immobile, layer);
-    commandLabel5.spawn(new Vector2f(pointX, pointY -= INTERSPACE), immobile, layer);
-    commandLabel6.spawn(new Vector2f(pointX, pointY - INTERSPACE), immobile, layer);
+    title.spawn(new Vector2f(pointX + 160, pointY -= INTERSPACE * 4), IMMOBILE, layer);
+    commandLabel.spawn(new Vector2f(pointX + 200, pointY -= INTERSPACE * 4), IMMOBILE, layer);
+    commandLabel0.spawn(new Vector2f(pointX, pointY -= INTERSPACE * 2), IMMOBILE, layer);
+    commandLabel1.spawn(new Vector2f(pointX, pointY -= INTERSPACE), IMMOBILE, layer);
+    commandLabel2.spawn(new Vector2f(pointX, pointY -= INTERSPACE), IMMOBILE, layer);
+    commandLabel3.spawn(new Vector2f(pointX, pointY -= INTERSPACE), IMMOBILE, layer);
+    commandLabel4.spawn(new Vector2f(pointX, pointY -= INTERSPACE), IMMOBILE, layer);
+    commandLabel5.spawn(new Vector2f(pointX, pointY -= INTERSPACE), IMMOBILE, layer);
+    commandLabel6.spawn(new Vector2f(pointX, pointY - INTERSPACE), IMMOBILE, layer);
 
     KeyListener space = new KeyListener() {
       @Override
@@ -58,7 +58,6 @@ public class Intro {
     Main.timer.pause();
     while (introOn) {
       Main.update();
-
       Main.render();
       layer.render();
 

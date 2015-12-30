@@ -7,4 +7,8 @@ public class FireBall extends AnimatedEntity {
   public FireBall(Orb orb) {
 
   }
+
+  public void draw(float v) {
+
+  }
 }

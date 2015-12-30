@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Main {
+  public static float DEFAULT_Z = 0;
   public static final int SCREEN_WIDTH = 800;
   public static final int SCREEN_HEIGHT = 600;
   private static final boolean FULL_SCREEN = false;
@@ -280,7 +281,6 @@ public class Main {
   private static void fadeScreen(boolean drawFb) {
     if (fadeAlpha > 0.1) {
       GL11.glLoadIdentity();
-      float DEFAULT_Z = 0;
       GL11.glTranslatef(0, 0, DEFAULT_Z);
       GL11.glColor4f(0, 0, 0, fadeAlpha / 1.2f);
       GL11.glDisable(GL11.GL_TEXTURE_2D);
@@ -365,7 +365,7 @@ public class Main {
     return Keyboard.isKeyDown(Keyboard.KEY_ESCAPE) || Display.isCloseRequested();
   }
 
-  private static void heartBeat() {
+  static void heartBeat() {
     Timer.tick();
     tick = timer.getTime() - lastTime;
     deltas += tick;

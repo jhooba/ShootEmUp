@@ -10,6 +10,14 @@ import rtype.entity.Entity;
 public class Layer {
   public ArrayList<Entity> entities = new ArrayList<>();
 
+  public void add(Entity e) {
+    entities.add(e);
+  }
+
+  public void remove(Entity e) {
+    entities.remove(e);
+  }
+
   public void update() {
     for (Entity e : entities) {
       e.updateTick();

@@ -15,5 +15,12 @@ public interface IEntity {
   int STAR_4 = 14;
   int STAR_5 = 15;
   int STAR_6 = 16;
+  int EXPLOSION1 = 18;
+  int EXPLOSION2 = 19;
+  int ENEMY_PIECE1 = 29;
   int BONUS_BOOSTER = 39;
+  int BONUS_LIGHTNING_ORB = 40;
+  int BONUS_GRAVITY_ORB = 41;
+  int BONUS_RAPID_SHOOT_ORB = 42;
+  int BONUS_CRYSTAL_ORB = 43;
 }

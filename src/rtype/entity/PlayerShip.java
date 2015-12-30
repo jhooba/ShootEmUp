@@ -1,5 +1,7 @@
 package rtype.entity;
 
+import rtype.Layer;
+
 /**
  * Created by jhooba on 2015-12-20.
  */
@@ -15,5 +17,9 @@ public class PlayerShip extends AnimatedEntity {
 
   public void addEventListeners() {
 
+  }
+
+  public void addBooster(Layer layer) {
+    
   }
 }
