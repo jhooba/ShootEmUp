@@ -5,5 +5,11 @@ package rtype.entity;
  */
 public class RapidFireOrb extends Orb {
   public RapidFireOrb(PlayerShip rapid) {
+    super(PINK_ORB);
+  }
+
+  @Override
+  public void draw() {
+
   }
 }

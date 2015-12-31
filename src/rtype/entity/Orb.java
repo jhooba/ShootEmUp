@@ -5,4 +5,8 @@ package rtype.entity;
  */
 public abstract class Orb extends Weapon {
   public FireBall fb = new FireBall(this);
+
+  protected Orb(int type) {
+    super(type);
+  }
 }

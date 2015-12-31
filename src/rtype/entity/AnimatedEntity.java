@@ -9,7 +9,7 @@ import rtype.Texture;
 public abstract class AnimatedEntity extends Entity {
   // this field set if player is charging a blast
   public boolean displayAnimation;
-  private Texture[] animationTextures;
+  protected Texture[] animationTextures;
 
   protected AnimatedEntity(int type) {
     super(type);

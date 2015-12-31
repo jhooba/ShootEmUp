@@ -6,6 +6,10 @@ package rtype.entity;
 public class LadyBird extends Enemy {
   private Bonus presetBonus;
 
+  public LadyBird() {
+    super(LADYBIRD);
+  }
+
   public void setPresetBonus(Bonus presetBonus) {
     this.presetBonus = presetBonus;
   }

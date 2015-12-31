@@ -20,10 +20,10 @@ public abstract class Entity implements IEntity {
 
   private Layer layer = null;
 
-  private float textureDown = 0;
-  private float textureUp = 1;
-  private float textureLeft = 0;
-  private float textureRight = 1;
+  protected float textureDown = 0;
+  protected float textureUp = 1;
+  protected float textureLeft = 0;
+  protected float textureRight = 1;
 
   private float tick;
 
@@ -48,6 +48,14 @@ public abstract class Entity implements IEntity {
 
   protected Entity(int type) {
     this.type = type;
+  }
+
+  protected void init() {
+    texture = Main.textureLoader.getTexture(type);
+    originalWidth = texture.getTextureWidth();
+    originalHeight = texture.getTextureHeight();
+    width = originalWidth * ratio;
+    width = originalHeight * ratio;
   }
 
   public void spawn(Vector2f position, Vector2f speed, Layer layer) {

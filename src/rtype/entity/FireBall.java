@@ -5,10 +5,15 @@ package rtype.entity;
  */
 public class FireBall extends AnimatedEntity {
   public FireBall(Orb orb) {
-
+    super(FIRE_BALL);
   }
 
   public void draw(float v) {
+
+  }
+
+  @Override
+  public void draw() {
 
   }
 }

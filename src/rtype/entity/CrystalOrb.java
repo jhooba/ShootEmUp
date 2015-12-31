@@ -5,5 +5,11 @@ package rtype.entity;
  */
 public class CrystalOrb extends Orb {
   public CrystalOrb(PlayerShip crystal) {
+    super(GREEN_ORB);
+  }
+
+  @Override
+  public void draw() {
+
   }
 }

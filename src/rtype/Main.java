@@ -1,6 +1,13 @@
 package rtype;
 
 import generator.*;
+import rtype.entity.Bonus;
+import rtype.entity.Entity;
+import rtype.entity.IEntity;
+import rtype.entity.PlayerShip;
+import rtype.entity.Text;
+import rtype.entity.TextEntityCounter;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
@@ -11,7 +18,6 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.Timer;
 import org.lwjgl.util.glu.GLU;
 import org.lwjgl.util.vector.Vector2f;
-import rtype.entity.*;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -124,7 +130,7 @@ public class Main {
 
     player.addEventListeners();
 
-    Bonus b = BounsFactory.createBonus();
+    Bonus b = BonusFactory.createBonus(IEntity.BONUS_LIGHTNING_ORB);
     b.spawn(new Vector2f(player.position.x + 100, player.position.y), DEFAULT_SCROLLING_SPEED, bonus);
 
     addControlKeys();

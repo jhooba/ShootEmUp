@@ -5,5 +5,11 @@ package rtype.entity;
  */
 public class MagneticOrb extends Orb {
   public MagneticOrb(PlayerShip magnetic) {
+    super(RED_ORB);
+  }
+
+  @Override
+  public void draw() {
+
   }
 }

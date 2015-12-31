@@ -5,4 +5,13 @@ package rtype.entity;
  */
 public class Bonus extends AnimatedEntity {
   public static final int BONUS_COUNT = 5;
+
+  protected Bonus(int type) {
+    super(type);
+  }
+
+  @Override
+  public void draw() {
+
+  }
 }

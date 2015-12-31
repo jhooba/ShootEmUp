@@ -4,6 +4,7 @@ package rtype.entity;
  * Created by jhooba on 2015-12-26.
  */
 public interface IEntity {
+  int PLANET = 0;
   int PLAYER_SHIP = 1;
   int GREEN_ORB = 2;
   int BLUE_ORB = 3;

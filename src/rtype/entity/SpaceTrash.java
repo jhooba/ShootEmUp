@@ -5,6 +5,6 @@ package rtype.entity;
  */
 public class SpaceTrash extends Entity {
   public SpaceTrash(int type) {
-
+    super(type);
   }
 }

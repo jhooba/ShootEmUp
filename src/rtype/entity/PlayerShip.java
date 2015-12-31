@@ -12,6 +12,10 @@ public class PlayerShip extends AnimatedEntity {
   public Orb orb;
   public float power = 0;
 
+  public PlayerShip() {
+    super(PLAYER_SHIP);
+  }
+
   public void addBooster() {
   }
 
@@ -21,5 +25,10 @@ public class PlayerShip extends AnimatedEntity {
 
   public void addBooster(Layer layer) {
     
+  }
+
+  @Override
+  public void draw() {
+
   }
 }

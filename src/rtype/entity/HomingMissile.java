@@ -7,6 +7,11 @@ import rtype.Layer;
  */
 public class HomingMissile extends AnimatedEntity {
   public HomingMissile(Layer enemies, float v) {
+    super(MISSILE);
+  }
+
+  @Override
+  public void draw() {
 
   }
 }
