@@ -27,7 +27,6 @@ public class BonusDesc {
   private static final int INTERSPACE_Y = 60;
 
   private Layer layer = new Layer();
-  private Layer nullLayer = new Layer();
   private boolean bonusOn = true;
 
   public BonusDesc() {
@@ -76,19 +75,19 @@ public class BonusDesc {
     pointY = ORIGIN_Y;
 
     pointY -= INTERSPACE_Y;
-    lightning.spawn(new Vector2f(pointX, pointY), IMMOBILE, layer);
+    lightningLabel.spawn(new Vector2f(pointX, pointY), IMMOBILE, layer);
 
     pointY -= INTERSPACE_Y;
-    rapid.spawn(new Vector2f(pointX, pointY), IMMOBILE, layer);
+    rapidLabel.spawn(new Vector2f(pointX, pointY), IMMOBILE, layer);
 
     pointY -= INTERSPACE_Y;
-    magnetic.spawn(new Vector2f(pointX, pointY), IMMOBILE, layer);
+    magneticLabel.spawn(new Vector2f(pointX, pointY), IMMOBILE, layer);
 
     pointY -= INTERSPACE_Y;
-    crystal.spawn(new Vector2f(pointX, pointY), IMMOBILE, layer);
+    crystalLabel.spawn(new Vector2f(pointX, pointY), IMMOBILE, layer);
 
     pointY -= INTERSPACE_Y;
-    booster.spawn(new Vector2f(pointX, pointY), IMMOBILE, layer);
+    boosterLabel.spawn(new Vector2f(pointX, pointY), IMMOBILE, layer);
 
     pointX = ORIGIN_X + 50;
     pointY = ORIGIN_Y;
@@ -112,6 +111,7 @@ public class BonusDesc {
     pointY = ORIGIN_Y;
 
     pointY -= INTERSPACE_Y;
+    Layer nullLayer = new Layer();
     lightning.spawn(new Vector2f(pointX, pointY), IMMOBILE, nullLayer);
     lorb.spawn(new Vector2f(pointX - 400, pointY), IMMOBILE, layer);
 

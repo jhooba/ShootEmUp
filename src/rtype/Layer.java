@@ -8,7 +8,7 @@ import rtype.entity.Entity;
  * Created by jhooba on 2015-12-20.
  */
 public class Layer {
-  public ArrayList<Entity> entities = new ArrayList<>();
+  public final ArrayList<Entity> entities = new ArrayList<>();
 
   public void add(Entity e) {
     entities.add(e);

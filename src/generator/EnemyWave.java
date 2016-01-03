@@ -13,6 +13,7 @@ public class EnemyWave extends GeneratorBase {
   // Rate at which generating entities.
   public static float RATE = 2f;
   private static final Vector2f DEFAULT_LADY_SPEED = new Vector2f(-76.3f,0);
+  private static final int MAX_UNIT_GENERATED = 5;
 
   private final int x;
   private float tickAccumulator = 0;
@@ -26,7 +27,6 @@ public class EnemyWave extends GeneratorBase {
   @Override
   public void generateEntities() {
     tickAccumulator += Main.tick;
-    int MAX_UNIT_GENERATED = 5;
     if (tickAccumulator > RATE) {
       tickAccumulator = 0;
       LadyBird lady = new LadyBird();
@@ -38,7 +38,7 @@ public class EnemyWave extends GeneratorBase {
       ++generatedUnitCounter;
     }
     if (generatedUnitCounter > MAX_UNIT_GENERATED) {
-      this.done = true;
+      done = true;
     }
   }
 }

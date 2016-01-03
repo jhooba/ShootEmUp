@@ -50,4 +50,7 @@ public interface IEntity {
   int BONUS_CRYSTAL_ORB = 43;
   int BONUS_MULTI_SHOOT_ORB = 44;
   int BONUS_SPEED = 45;
+  int ORB_BEAM = 46;
+  int ENEMY_BULLET = 47;
+  int BULLET_RAPID_FIRE = 64;
 }

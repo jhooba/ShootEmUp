@@ -19,9 +19,6 @@ public class Collision {
     if (entityA.position.x > entityB.position.x + entityB.width) {
       return false;
     }
-    if (entityA.position.y > entityB.position.y + entityB.height) {
-      return false;
-    }
-    return true;
+    return entityA.position.y <= entityB.position.y + entityB.height;
   }
 }

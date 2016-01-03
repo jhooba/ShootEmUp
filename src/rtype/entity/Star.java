@@ -7,9 +7,8 @@ import org.lwjgl.opengl.GL11;
  */
 public class Star extends Entity {
   public Star(int type) {
-    super(type);
+    super(type, 1.0f);
     init();
-    setRatio(1.0f);
   }
 
   @Override

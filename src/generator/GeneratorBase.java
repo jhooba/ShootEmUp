@@ -5,7 +5,7 @@ package generator;
  */
 abstract public class GeneratorBase {
   private float delay = 0;
-  protected boolean done;
+  protected boolean done = false;
 
   protected GeneratorBase (float delay) {
     this.delay = delay;

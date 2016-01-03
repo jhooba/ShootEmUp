@@ -7,7 +7,7 @@ import org.lwjgl.input.Keyboard;
  */
 abstract public class KeyListener {
   private int keyMonitored;
-  private boolean keyMonitoredWasPressed;
+  private boolean keyMonitoredWasPressed = false;
 
   public void setKeyMonitored(int key) {
     keyMonitored = key;

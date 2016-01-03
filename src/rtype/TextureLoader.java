@@ -25,18 +25,17 @@ public class TextureLoader {
 
   public void init() {
     textures[IEntity.PLANET] = loadTexture("/graphic/Stage1Layer1.png", 510, 510, 512, 512);
-
     textures[IEntity.SPACE_TRASH_1] = loadTexture("/graphic/Stage1Layer1.png", 256, 438, 256, 256);
     textures[IEntity.SPACE_TRASH_2] = loadTexture("/graphic/Stage1Layer1.png", 257, 700, 256, 256);
     textures[IEntity.SPACE_TRASH_3] = loadTexture("/graphic/Stage1Layer1.png", 373, 956, 64, 64);
     textures[IEntity.SPACE_TRASH_4] = loadTexture("/graphic/Stage1Layer1.png", 492, 102, 256, 128);
+    textures[IEntity.SPACE_TRASH_5] = loadTexture("/graphic/Stage1Layer1.png", 148, 721, 64, 64);
     textures[IEntity.STAR_1] = loadTexture("/graphic/Stage1Layer1.png", 612, 1011, 8, 8);
     textures[IEntity.STAR_2] = loadTexture("/graphic/Stage1Layer1.png", 649, 990, 16, 32);
     textures[IEntity.STAR_3] = loadTexture("/graphic/Stage1Layer1.png", 674, 994, 16, 16);
     textures[IEntity.STAR_4] = loadTexture("/graphic/Stage1Layer1.png", 716, 1004, 16, 16);
     textures[IEntity.STAR_5] = loadTexture("/graphic/Stage1Layer1.png", 738, 990, 32, 32);
     textures[IEntity.STAR_6] = loadTexture("/graphic/Stage1Layer1.png", 780, 994, 16, 16);
-
     textures[IEntity.ENEMY_PIECE_1] = loadTexture("/graphic/SpaceTrash.png", 0, 0, 32, 32);
     textures[IEntity.ENEMY_PIECE_2] = loadTexture("/graphic/SpaceTrash.png", 32, 0, 32, 32);
     textures[IEntity.ENEMY_PIECE_3] = loadTexture("/graphic/SpaceTrash.png", 64, 0, 32, 32);
@@ -45,7 +44,10 @@ public class TextureLoader {
     textures[IEntity.ENEMY_PIECE_6] = loadTexture("/graphic/SpaceTrash.png", 32, 32, 32, 32);
     textures[IEntity.ENEMY_PIECE_7] = loadTexture("/graphic/SpaceTrash.png", 64, 32, 32, 32);
     textures[IEntity.ENEMY_PIECE_8] = loadTexture("/graphic/SpaceTrash.png", 96, 32, 32, 32);
-    textures[IEntity.SPACE_TRASH_5] = loadTexture("/graphic/Stage1Layer1.png", 148, 721, 64, 64);
+    textures[IEntity.BULLET_RAPID_FIRE] = loadTexture("/graphic/BulletSet1.png", 0, 64, 32, 32);
+    textures[IEntity.ORB_BEAM] = loadTexture("/graphic/GlowBullets.png", 32, 0, 32, 32);
+    textures[IEntity.ENEMY_BULLET] = loadTexture("/graphic/BulletSet1.png", 0, 0, 32, 32);
+    textures[IEntity.BULLET_RAPID_FIRE] = loadTexture("/graphic/BulletSet1.png", 0, 64, 32, 32);
 
     animations[IEntity.PLAYER_SHIP] = loadAnimation("/graphic/PlayerShip.png", 4, 4, 128, 128);
     animations[IEntity.GREEN_ORB] = loadAnimation("/graphic/Orb1.png", 8, 2, 64, 64);
@@ -53,26 +55,26 @@ public class TextureLoader {
     animations[IEntity.PINK_ORB] = loadAnimation("/graphic/Orb1.png", 8, 2, 64, 64, 0, 256);
     animations[IEntity.RED_ORB] = loadAnimation("/graphic/Orb1.png", 8, 2, 64, 64, 0, 384);
     animations[IEntity.FORCE_CHARGE] = loadAnimation("/graphic/ForceCharge.png", 8, 4, 64, 64);
-    animations[IEntity.PLAYER_SPEED] = loadAnimation("/graphic/PlayerSpeed.png", 8, 4, 64, 64);
     animations[IEntity.EXPLOSION_1] = loadAnimation("/graphic/Explosion2.png", 8, 4, 64, 64);
     animations[IEntity.EXPLOSION_2] = loadAnimation("/graphic/ExplosionSmall.png", 8, 4, 128, 128);
+    animations[IEntity.FONT] = loadAnimation("/graphic/Fonts.png", 16, 16, 32, 32);
+    animations[IEntity.PLAYER_SPEED] = loadAnimation("/graphic/PlayerSpeed.png", 8, 4, 64, 64);
     animations[IEntity.LADYBIRD] = loadAnimation("/graphic/Ladybird.png", 4, 4, 64, 64);
     animations[IEntity.FIRE_BALL] = loadAnimation("/graphic/Fireball.png", 4, 4, 128, 128);
-    animations[IEntity.FONT] = loadAnimation("/graphic/Fonts.png", 16, 16, 32, 32);
     animations[IEntity.BULLET_HIT_YELLOW] = loadAnimation("/graphic/BulletHit.png", 4, 2, 32, 32);
     animations[IEntity.BULLET_HIT_GREEN]  = loadAnimation("/graphic/BulletHit2.png", 4, 2, 32, 32);
     animations[IEntity.BULLET_HIT_BLUE] = loadAnimation("/graphic/BulletHit3.png", 4, 2, 32, 32);
     animations[IEntity.BIT_UPGRADE] = loadAnimation("/graphic/BitUpgrade.png", 4, 2, 32, 32);
-    animations[IEntity.BONUS_MULTI_SHOOT_ORB] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 0);
-    animations[IEntity.BONUS_LIGHTNING_ORB] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 64);
-    animations[IEntity.BONUS_RAPID_SHOOT_ORB] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 128);
-    animations[IEntity.BONUS_GRAVITY_ORB] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 192);
-    animations[IEntity.BONUS_SPEED] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 256);
-    animations[IEntity.BONUS_CRYSTAL_ORB] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 320);
-    animations[IEntity.BONUS_BOOSTER] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 384);
     animations[IEntity.IMPLOSION] = loadAnimation("/graphic/Implosion.png", 8, 4, 64, 64);
     animations[IEntity.MISSILE] = loadAnimation("/graphic/HomingMissile.png", 4, 4, 64, 64);
     animations[IEntity.SMOKE] = loadAnimation("/graphic/SmokePuff.png", 4, 4, 32, 32);
+    animations[IEntity.BONUS_BOOSTER] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 384);
+    animations[IEntity.BONUS_LIGHTNING_ORB] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 64);
+    animations[IEntity.BONUS_GRAVITY_ORB] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 192);
+    animations[IEntity.BONUS_RAPID_SHOOT_ORB] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 128);
+    animations[IEntity.BONUS_CRYSTAL_ORB] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 320);
+    animations[IEntity.BONUS_MULTI_SHOOT_ORB] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 0);
+    animations[IEntity.BONUS_SPEED] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 256);
   }
 
   private Texture[] loadAnimation(String path, int cols, int rows, int texWidth, int texHeight) {
@@ -141,10 +143,7 @@ public class TextureLoader {
     GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, texWidth, texHeight, 0, GL11.GL_RGBA,
         GL11.GL_UNSIGNED_BYTE, scratch);
 
-    Texture newTexture = new Texture();
-    newTexture.textureId = buf.get(0);
-    newTexture.textureHeight = texHeight;
-    newTexture.textureWidth = texWidth;
+    Texture newTexture = new Texture(buf.get(0), texHeight, texWidth);
     return newTexture;
   }
 

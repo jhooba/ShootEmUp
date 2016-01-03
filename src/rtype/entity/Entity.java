@@ -15,21 +15,22 @@ public abstract class Entity implements IEntity {
   private static final Vector2f SPEED_DOWN = new Vector2f(30, -23);
 
   protected final int type;
+  private final float ratio;
+  protected Texture texture;
+  protected float originalWidth;
+  protected float originalHeight;
+
   public final Vector2f position = new Vector2f();
   public final Vector2f speed = new Vector2f();
 
-  private Layer layer = null;
+  protected Layer layer = null;
 
   protected float textureDown = 0;
   protected float textureUp = 1;
   protected float textureLeft = 0;
   protected float textureRight = 1;
 
-  private float tick;
-
-  private float ratio = 1.f;
-  private float originalWidth;
-  private float originalHeight;
+  protected float tick;
 
   private float freezeSpeed = 0;
   public float rotation = 0;
@@ -37,17 +38,17 @@ public abstract class Entity implements IEntity {
   public float height;
 
   private float rotationSpeed = 0;
-  private Texture texture;
-  private float damage = 1;
-  private float life = 1;
-  private boolean freezing = false;
+  float damage = 1;
+  protected float life = 1;
+  protected boolean freezing = false;
   private boolean frozen = false;
   private float frozenTickCounter = 0;
   private float freezeDuration = 0;
   private float freezingPercentage = 0;
 
-  protected Entity(int type) {
+  protected Entity(int type, float ratio) {
     this.type = type;
+    this.ratio = ratio;
   }
 
   protected void init() {
@@ -55,7 +56,7 @@ public abstract class Entity implements IEntity {
     originalWidth = texture.getTextureWidth();
     originalHeight = texture.getTextureHeight();
     width = originalWidth * ratio;
-    width = originalHeight * ratio;
+    height = originalHeight * ratio;
   }
 
   public void spawn(Vector2f position, Vector2f speed, Layer layer) {
@@ -100,7 +101,7 @@ public abstract class Entity implements IEntity {
     GL11.glEnd();
   }
 
-  private Vector2f interpolate(Vector2f oldPosition, Vector2f speed) {
+  protected Vector2f interpolate(Vector2f oldPosition, Vector2f speed) {
     oldPosition.x += tick * speed.x;
     oldPosition.y += tick * speed.y;
     return oldPosition;
@@ -186,11 +187,5 @@ public abstract class Entity implements IEntity {
     } else {
       tick = Main.tick;
     }
-  }
-
-  protected void setRatio(float newRatio) {
-    ratio = newRatio;
-    width = originalWidth * ratio;
-    height = originalHeight * ratio;
   }
 }

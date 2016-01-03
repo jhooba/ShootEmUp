@@ -9,6 +9,9 @@ import rtype.entity.LadyBird;
  * Created by jhooba on 2015-12-20.
  */
 public class LadyBirdGenerator extends GeneratorBase {
+  private static final float LADY_SPAWNING_RATE = 0.005f;
+  private static final Vector2f DEFAULT_LADY_SPEED = new Vector2f(-56.3f, 0);
+
   private float ladyDeltaAcc = 0;
 
   public LadyBirdGenerator(float delay) {
@@ -17,8 +20,6 @@ public class LadyBirdGenerator extends GeneratorBase {
 
   @Override
   public void generateEntities() {
-    final float LADY_SPAWNING_RATE = 0.005f;
-    final Vector2f DEFAULT_LADY_SPEED = new Vector2f(-56.3f, 0);
     ladyDeltaAcc += Main.tick;
     if (ladyDeltaAcc > LADY_SPAWNING_RATE) {
       ladyDeltaAcc = 0;

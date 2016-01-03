@@ -8,10 +8,9 @@ import org.lwjgl.opengl.GL11;
 public class Planet extends Entity {
 
   public Planet() {
-    super(PLANET);
-    init();
-    setRatio(0.65f);
+    super(PLANET, 0.65f);
     rotation = 180;
+    init();
   }
 
   @Override

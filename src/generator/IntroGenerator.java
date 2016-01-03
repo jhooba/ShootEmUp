@@ -12,6 +12,7 @@ import rtype.entity.Star;
  */
 public class IntroGenerator extends GeneratorBase {
   private static final float B_S = 7f;
+
   @Override
   public void generateEntities() {
     Planet planet= new Planet();

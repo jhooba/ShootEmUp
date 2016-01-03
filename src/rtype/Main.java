@@ -32,7 +32,7 @@ public class Main {
   private static final boolean FULL_SCREEN = false;
   private static final int BYTES_PER_PIXEL = 3;
 
-  private static final Vector2f DEFAULT_SCROLLING_SPEED = new Vector2f(-5, 0);
+  public static final Vector2f DEFAULT_SCROLLING_SPEED = new Vector2f(-5, 0);
   public static final Random RANDOM = new Random(System.currentTimeMillis());
 
   // This is the address where screen copy is stored
@@ -42,19 +42,18 @@ public class Main {
   public static TextureLoader textureLoader;
 
   // This is the player's sprite
-  private static PlayerShip player;
+  public static PlayerShip player;
   // Set of layers, drawn in a different order ( see render method)
   public static Layer bullets = new Layer();
   public static Layer enemies = new Layer();
-  private static Layer fx = new Layer();
-  private static Layer bonus = new Layer();
+  public static Layer fx = new Layer();
+  public static Layer bonus = new Layer();
   public static Layer background = new Layer();
   public static Layer frontground = new Layer();
   private static Layer text = new Layer();
   // Text object used to display fps, score and entity total count
   private static Text textFPS;
   private static Text textHiScore;
-  private static TextEntityCounter entitiesCount;
   private static Text pause;
 
   private static GeneratorBase homingGenerator = new HomingMissileGenerator();
@@ -67,7 +66,7 @@ public class Main {
   public static float tick;
 
   static boolean gameOff = false;
-  private static float fadeAlpha = 0;
+  public static float fadeAlpha = 0;
 
   // Variables used to calculate fps
   private static int frames;
@@ -303,8 +302,7 @@ public class Main {
       GL11.glEnable(GL11.GL_TEXTURE_2D);
       GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
     }
-    if (player != null && player.orb != null && player.orb.fb != null
-        && player.orb.fb.displayAnimation && drawFb) {
+    if (player != null && player.orb != null && player.orb.fb.displayAnimation && drawFb) {
       player.orb.fb.updateTick();
       player.orb.fb.draw(fadeAlpha * 2);
     }
@@ -430,7 +428,7 @@ public class Main {
     textHiScore = new Text("HISCORE:");
     textHiScore.spawn(new Vector2f(SCREEN_WIDTH / 2 + 20, SCREEN_WIDTH / 2 - 20), new Vector2f(0, 0), text);
 
-    entitiesCount = new TextEntityCounter();
+    TextEntityCounter entitiesCount = new TextEntityCounter();
     entitiesCount.spawn(new Vector2f(SCREEN_WIDTH / 2 + 20, SCREEN_WIDTH / 2 + 20), new Vector2f(0, 0), text);
   }
 

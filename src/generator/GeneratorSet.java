@@ -10,7 +10,7 @@ import java.util.List;
  * Created by jhooba on 2015-12-20.
  */
 public class GeneratorSet {
-  private List<GeneratorBase> generators = new ArrayList<>();
+  private final List<GeneratorBase> generators = new ArrayList<>();
   private float tickAccumulator = 0;
 
   public boolean contains(GeneratorBase gen) {
@@ -27,13 +27,13 @@ public class GeneratorSet {
 
   public void generate() {
     tickAccumulator += Main.tick;
-    for (Iterator<GeneratorBase> itor = generators.iterator(); itor.hasNext(); ) {
-      GeneratorBase gen = itor.next();
+    for (Iterator<GeneratorBase> iter = generators.iterator(); iter.hasNext(); ) {
+      GeneratorBase gen = iter.next();
       if (tickAccumulator > gen.getDelay()) {
         gen.generateEntities();
       }
       if (gen.isDone()) {
-        itor.remove();
+        iter.remove();
       }
     }
   }

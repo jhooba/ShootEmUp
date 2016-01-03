@@ -12,6 +12,7 @@ import rtype.entity.Text;
  */
 public class Intro {
   private static final Vector2f IMMOBILE = new Vector2f(0, 0);
+
   private final Layer layer;
   private boolean introOn = true;
 
