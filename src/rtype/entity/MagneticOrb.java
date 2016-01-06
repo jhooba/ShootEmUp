@@ -63,4 +63,10 @@ public class MagneticOrb extends Orb {
       super.update();
     }
   }
+
+  @Override
+  public void fire(float chargePercentage) {
+    attractionDuration = 10 * chargePercentage;
+    attracting = true;
+  }
 }

@@ -9,6 +9,8 @@ import rtype.Main;
 public class RapidFireOrb extends Orb {
   private static final float FIRE_RATE_LIMIT = 2;
   private static final float BULLET_FIRE_RATE = 30;
+  private static final float MAX_BULLETS = 100;
+  private static float DEFAULT_DISTANCE_FROM_SHIP_WHEN_FIRING = DEFAULT_DISTANCE_FROM_SHIP + 70;
 
   private float bulletsToFire = 0;
   private float bulletTimeCounter = 0;
@@ -16,6 +18,12 @@ public class RapidFireOrb extends Orb {
   public RapidFireOrb(PlayerShip player) {
     super(player, PINK_ORB);
     init();
+  }
+
+  @Override
+  public void fire(float chargePercentage) {
+    bulletsToFire = MAX_BULLETS * chargePercentage;
+    distanceFromShipRequested = DEFAULT_DISTANCE_FROM_SHIP_WHEN_FIRING;
   }
 
   @Override

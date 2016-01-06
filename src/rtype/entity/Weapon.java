@@ -14,4 +14,6 @@ public abstract class Weapon extends AnimatedEntity {
     super(type, ratio);
     this.playerShip = playerShip;
   }
+
+  public abstract void fire(float chargePercentage);
 }

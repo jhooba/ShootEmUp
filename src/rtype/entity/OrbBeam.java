@@ -22,7 +22,7 @@ public class OrbBeam extends Entity {
   private final ArrayList<Vector2f> meltingPoints = new ArrayList<>();
   private final float thickness;
 
-  public OrbBeam(LightningOrb orb, Vector2f[] p, int thickness, boolean way, float r, float g, int b, float a,
+  public OrbBeam(LightningOrb orb, Vector2f[] p, float thickness, boolean way, float r, float g, int b, float a,
                  int modulo, float minimalArcHeight) {
     super(ORB_BEAM, 1.f);
     this.disappearanceSpeed = a * 1.7f;
@@ -135,5 +135,13 @@ public class OrbBeam extends Entity {
       GL11.glEnd();
       GL11.glColor4f(1, 1, 1, 1);
     }
+  }
+
+  public float getMinNormalWidth() {
+    return minNormalWidth;
+  }
+
+  public float getMaxNormalWidth() {
+    return maxNormalWidth;
   }
 }
