@@ -15,7 +15,7 @@ public class EventManager {
     return instance;
   }
 
-  private ArrayList<KeyListener> listeners = new ArrayList<>();
+  private final ArrayList<KeyListener> listeners = new ArrayList<>();
 
   public void addListener(int key, KeyListener listener) {
     listener.setKeyMonitored(key);

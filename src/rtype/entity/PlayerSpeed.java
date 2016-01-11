@@ -49,4 +49,10 @@ public class PlayerSpeed extends AnimatedEntity {
     GL11.glEnd();
     GL11.glColor4f(1, 1, 1, 1);
   }
+
+  @Override
+  public void stopAnimation() {
+    displayAnimation = false;
+    animationCursor = 1;
+  }
 }

@@ -41,7 +41,7 @@ public class OrbBeam extends Entity {
       Vector2f p1 = p[i];
       Vector2f p2 = p[k];
       meltingPoints.add(0, p1);
-      Vector2f norm = GLUTILS.makeNormalForPoints(p1, p2);
+      Vector2f norm = GLUtils.makeNormalForPoints(p1, p2);
       if (Logger.isLogActivate) {
         Logger.log("norm " + norm);
       }
@@ -65,13 +65,13 @@ public class OrbBeam extends Entity {
       controlPoint[2] = mid;
       controlPoint[1] = p2;
       for (int n = 0; n < SEQ_IN_BEAM; ++n) {
-        meltingPoints.add(0, calculatePintOnCurve(controlPoint, s));
+        meltingPoints.add(0, calculatePointOnCurve(controlPoint, s));
         s += f;
       }
     }
   }
 
-  private static Vector2f calculatePintOnCurve(Vector2f[] c, float distance) {
+  private static Vector2f calculatePointOnCurve(Vector2f[] c, float distance) {
     float a = 1 - distance;
     float b = 1 - a;
     Vector2f p = new Vector2f();
@@ -108,8 +108,8 @@ public class OrbBeam extends Entity {
           Vector2f p = meltingPoints.get(i);
           Vector2f p2 = meltingPoints.get(i + 1);
           Vector2f p3 = meltingPoints.get(i + 2);
-          Vector2f n = (Vector2f) GLUTILS.makeNormalForPoints(p, p2).scale(thickness);
-          Vector2f n2 = (Vector2f) GLUTILS.makeNormalForPoints(p2, p3).scale(thickness);
+          Vector2f n = (Vector2f) GLUtils.makeNormalForPoints(p, p2).scale(thickness);
+          Vector2f n2 = (Vector2f) GLUtils.makeNormalForPoints(p2, p3).scale(thickness);
 
           if (i == meltingPoints.size() - 3) {
             GL11.glColor4f(r, g, b, 0);

@@ -34,11 +34,4 @@ public abstract class AnimatedEntity extends Entity {
     displayAnimation = false;
     animationCursor = 0;
   }
-
-  public void startChargingAnimation() {
-  }
-
-  public void stopChargeAnimation() {
-
-  }
 }

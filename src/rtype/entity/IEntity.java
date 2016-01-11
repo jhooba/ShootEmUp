@@ -52,5 +52,7 @@ public interface IEntity {
   int BONUS_SPEED = 45;
   int ORB_BEAM = 46;
   int ENEMY_BULLET = 47;
+  int FORCE_BLAST = 48;
+
   int BULLET_RAPID_FIRE = 64;
 }

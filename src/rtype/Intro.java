@@ -12,6 +12,7 @@ import rtype.entity.Text;
  */
 public class Intro {
   private static final Vector2f IMMOBILE = new Vector2f(0, 0);
+  private static final int INTERSPACE = 20;
 
   private final Layer layer;
   private boolean introOn = true;
@@ -31,10 +32,8 @@ public class Intro {
     Text commandLabel5 = new Text("Space     : Fire ( maintain to charge)");
     Text commandLabel6 = new Text("Press SPACE to Start !!");
 
-    int pointY = 240;
     int pointX = -270;
-    final int INTERSPACE = 20;
-
+    int pointY = 240;
     title.spawn(new Vector2f(pointX + 160, pointY -= INTERSPACE * 4), IMMOBILE, layer);
     commandLabel.spawn(new Vector2f(pointX + 200, pointY -= INTERSPACE * 4), IMMOBILE, layer);
     commandLabel0.spawn(new Vector2f(pointX, pointY -= INTERSPACE * 2), IMMOBILE, layer);

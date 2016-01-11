@@ -27,6 +27,19 @@ public abstract class Orb extends Weapon {
   }
 
   @Override
+  public void startChargingAnimation() {
+    displayChargeAnimation = true;
+    fb.startAnimation();
+  }
+
+  @Override
+  public void stopChargeAnimation() {
+    displayChargeAnimation = false;
+    chargeAnimationCursor = 0;
+    fb.stopAnimation();
+  }
+
+  @Override
   public void draw() {
     animationCursor += animationSpeed * tick;
     animationCursor %= animationTextures.length;
@@ -106,7 +119,7 @@ public abstract class Orb extends Weapon {
     if (rotationRadians < 0)  {
       rotationRadians = 2 * Math.PI + rotationRadians;
     }
-    rotation = GLUTILS.radiansToDegres((float)rotationRadians);
+    rotation = GLUtils.radianToDegree((float)rotationRadians);
   }
 
   protected void calculateDistanceFromShip() {

@@ -47,6 +47,7 @@ public class TextureLoader {
     textures[IEntity.BULLET_RAPID_FIRE] = loadTexture("/graphic/BulletSet1.png", 0, 64, 32, 32);
     textures[IEntity.ORB_BEAM] = loadTexture("/graphic/GlowBullets.png", 32, 0, 32, 32);
     textures[IEntity.ENEMY_BULLET] = loadTexture("/graphic/BulletSet1.png", 0, 0, 32, 32);
+    textures[IEntity.FORCE_BLAST] = loadTexture("/graphic/ForceBlast.png",0, 0, 128, 64);
     textures[IEntity.BULLET_RAPID_FIRE] = loadTexture("/graphic/BulletSet1.png", 0, 64, 32, 32);
 
     animations[IEntity.PLAYER_SHIP] = loadAnimation("/graphic/PlayerShip.png", 4, 4, 128, 128);
@@ -75,20 +76,6 @@ public class TextureLoader {
     animations[IEntity.BONUS_CRYSTAL_ORB] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 320);
     animations[IEntity.BONUS_MULTI_SHOOT_ORB] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 0);
     animations[IEntity.BONUS_SPEED] = loadAnimation("/graphic/PowerUp1.png", 8, 1, 64, 64, 0, 256);
-  }
-
-  private Texture[] loadAnimation(String path, int cols, int rows, int texWidth, int texHeight) {
-    return loadAnimation(path, cols, rows, texWidth, texHeight, 0, 0);
-  }
-
-  private Texture[] loadAnimation(String path, int cols, int rows, int texWidth, int texHeight, int xOffset, int yOffset) {
-    Texture[] result = new Texture[cols * rows];
-    for (int i = 0; i < rows; ++i) {
-      for (int j= 0; j < cols; ++j) {
-        result[i * cols + j] = loadTexture(path, j * texWidth + xOffset, i * texHeight + yOffset, texWidth, texHeight);
-      }
-    }
-    return result;
   }
 
   // Offset are in term off pixel, not byte, the image loader figure out alone what is the bytesPerPixel
@@ -143,8 +130,21 @@ public class TextureLoader {
     GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, texWidth, texHeight, 0, GL11.GL_RGBA,
         GL11.GL_UNSIGNED_BYTE, scratch);
 
-    Texture newTexture = new Texture(buf.get(0), texHeight, texWidth);
-    return newTexture;
+    return new Texture(buf.get(0), texHeight, texWidth);
+  }
+
+  private Texture[] loadAnimation(String path, int cols, int rows, int texWidth, int texHeight) {
+    return loadAnimation(path, cols, rows, texWidth, texHeight, 0, 0);
+  }
+
+  private Texture[] loadAnimation(String path, int cols, int rows, int texWidth, int texHeight, int xOffset, int yOffset) {
+    Texture[] result = new Texture[cols * rows];
+    for (int i = 0; i < rows; ++i) {
+      for (int j= 0; j < cols; ++j) {
+        result[i * cols + j] = loadTexture(path, j * texWidth + xOffset, i * texHeight + yOffset, texWidth, texHeight);
+      }
+    }
+    return result;
   }
 
   private static void convertFromABGRToRGBA(byte[] data) {

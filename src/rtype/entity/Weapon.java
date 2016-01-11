@@ -16,4 +16,6 @@ public abstract class Weapon extends AnimatedEntity {
   }
 
   public abstract void fire(float chargePercentage);
+  public abstract void startChargingAnimation();
+  public abstract void stopChargeAnimation();
 }

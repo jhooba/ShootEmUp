@@ -41,7 +41,7 @@ public abstract class Entity implements IEntity {
   float damage = 1;
   protected float life = 1;
   protected boolean freezing = false;
-  private boolean frozen = false;
+  protected boolean frozen = false;
   private float frozenTickCounter = 0;
   private float freezeDuration = 0;
   private float freezingPercentage = 0;
@@ -187,5 +187,9 @@ public abstract class Entity implements IEntity {
     } else {
       tick = Main.tick;
     }
+  }
+
+  public Layer getLayer() {
+    return layer;
   }
 }
