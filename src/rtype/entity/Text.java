@@ -11,7 +11,7 @@ public class Text extends AnimatedEntity {
   private String string;
 
   public Text(String string) {
-    super(FONT, 0.4f);
+    super(FONT, 0.4f, 0f);
     setString(string);
     init();
   }

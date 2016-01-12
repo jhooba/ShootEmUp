@@ -11,18 +11,17 @@ import rtype.Main;
 public class LadyBird extends Enemy {
   private static final int BONUS_RANGE = 600;
   private static final int BONUS_LIMIT = 1;
+  private static final float FIRE_SPEED = 0.05f;
 
   private int lastFireCounter;
   private Bonus presetBonus;
-  private float fireSpeed = 0.05f;
 
   public LadyBird() {
-    super(LADYBIRD, 0.45f);
-    animationSpeed = 15f;
+    super(LADYBIRD, 0.45f, 15f);
     init();
     flipYAxis();
     lastFireCounter = Main.RANDOM.nextInt();
-    animationCursor = System.currentTimeMillis() % (animationTextures.length - 1);
+    setAnimationCursor(System.currentTimeMillis() % (animationTextures.length - 1));
   }
 
   public void setPresetBonus(Bonus presetBonus) {
@@ -31,12 +30,11 @@ public class LadyBird extends Enemy {
 
   @Override
   public void draw() {
-    animationCursor += animationSpeed * tick;
-    animationCursor %= animationTextures.length;
+    updateAnimationCursor();
 
     GL11.glLoadIdentity();
     GL11.glTranslatef(position.x, position.y, Main.DEFAULT_Z);
-    GL11.glBindTexture(GL11.GL_TEXTURE_2D, animationTextures[(int)animationCursor].getTextureId());
+    GL11.glBindTexture(GL11.GL_TEXTURE_2D, getCursorAnimationTextureId());
     if (freezing) {
       GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
     } else {
@@ -62,7 +60,7 @@ public class LadyBird extends Enemy {
   @Override
   public void update() {
     super.update();
-    lastFireCounter += fireSpeed * tick;
+    lastFireCounter += FIRE_SPEED * tick;
     if (lastFireCounter > 1) {
       lastFireCounter = 0;
       fire();

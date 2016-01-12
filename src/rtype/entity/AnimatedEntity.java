@@ -10,12 +10,13 @@ public abstract class AnimatedEntity extends Entity {
   // this field set if player is charging a blast
   public boolean displayAnimation;
   protected Texture[] animationTextures;
-  protected float animationSpeed = 4.4f;
+  private float animationSpeed = 4.4f;
   // This field hold the blast charge..
-  protected float animationCursor;
+  private float animationCursor;
 
-  protected AnimatedEntity(int type, float ratio) {
+  protected AnimatedEntity(int type, float ratio, float animationSpeed) {
     super(type, ratio);
+    this.animationSpeed = animationSpeed;
   }
 
   protected void init () {
@@ -33,5 +34,28 @@ public abstract class AnimatedEntity extends Entity {
   public void stopAnimation() {
     displayAnimation = false;
     animationCursor = 0;
+  }
+
+  protected void updateAnimationCursor() {
+    if (displayAnimation) {
+      animationCursor += animationSpeed * tick;
+      animationCursor %= animationTextures.length;
+    }
+  }
+
+  protected int getCursorAnimationTextureId() {
+    return animationTextures[(int)animationCursor].getTextureId();
+  }
+
+  protected float getAnimationCursor() {
+    return animationCursor;
+  }
+
+  protected boolean isLastAnimation() {
+    return animationCursor == animationTextures.length - 1;
+  }
+
+  protected void setAnimationCursor(float animationCursor) {
+    this.animationCursor = animationCursor;
   }
 }

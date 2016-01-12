@@ -10,13 +10,13 @@ public class RapidFireOrb extends Orb {
   private static final float FIRE_RATE_LIMIT = 2;
   private static final float BULLET_FIRE_RATE = 30;
   private static final float MAX_BULLETS = 100;
-  private static float DEFAULT_DISTANCE_FROM_SHIP_WHEN_FIRING = DEFAULT_DISTANCE_FROM_SHIP + 70;
+  private static final float DEFAULT_DISTANCE_FROM_SHIP_WHEN_FIRING = DEFAULT_DISTANCE_FROM_SHIP + 70;
 
   private float bulletsToFire = 0;
   private float bulletTimeCounter = 0;
 
-  public RapidFireOrb(PlayerShip player) {
-    super(player, PINK_ORB);
+  public RapidFireOrb(PlayerShip playerShip) {
+    super(playerShip, PINK_ORB);
     init();
   }
 

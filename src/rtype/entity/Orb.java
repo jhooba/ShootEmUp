@@ -21,8 +21,7 @@ public abstract class Orb extends Weapon {
   protected double rotationRadians = 0;
 
   protected Orb(PlayerShip playerShip, int type) {
-    super(playerShip, type, 0.35f);
-    animationSpeed = 20f;
+    super(playerShip, type, 0.35f, 20f);
     chargeAnimationSpeed = 0.9f;
   }
 
@@ -41,15 +40,14 @@ public abstract class Orb extends Weapon {
 
   @Override
   public void draw() {
-    animationCursor += animationSpeed * tick;
-    animationCursor %= animationTextures.length;
+    updateAnimationCursor();
 
     GL11.glLoadIdentity();
     GL11.glTranslatef(position.x, position.y, Main.DEFAULT_Z);
     GL11.glRotatef(rotation, 0f, 0f, 1f);
     GL11.glColor4f(1, 1, 1, 1);
     GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-    GL11.glBindTexture(GL11.GL_TEXTURE_2D, animationTextures[(int)animationCursor].getTextureId());
+    GL11.glBindTexture(GL11.GL_TEXTURE_2D, getCursorAnimationTextureId());
 
     GL11.glBegin(GL11.GL_QUADS);
     {

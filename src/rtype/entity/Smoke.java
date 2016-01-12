@@ -8,30 +8,28 @@ import rtype.Main;
  */
 public class Smoke extends AnimatedEntity {
   public Smoke() {
-    super(SMOKE, 1.0f);
-    animationSpeed = 16;
+    super(SMOKE, 1.0f, 16);
     init();
   }
 
   @Override
   public void draw() {
-    if (animationCursor == animationTextures.length - 1) {
+    if (isLastAnimation()) {
       unSpawn();
       if (Logger.isLogActivate) {
         Logger.log("Removed explosion from explosion layer");
       }
       return;
     }
-    animationCursor += animationSpeed * tick;
-    animationCursor %= animationTextures.length;
+    updateAnimationCursor();
 
     GL11.glLoadIdentity();
     GL11.glTranslatef(position.x, position.y, Main.DEFAULT_Z);
-    GL11.glBindTexture(GL11.GL_TEXTURE_2D, animationTextures[(int)animationCursor].getTextureId());
+    GL11.glBindTexture(GL11.GL_TEXTURE_2D, getCursorAnimationTextureId());
     GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
     GL11.glBegin(GL11.GL_QUADS);
     {
-      GL11.glColor4f(1, 1, 1, 2 / animationCursor);
+      GL11.glColor4f(1, 1, 1, 2 / getAnimationCursor());
       GL11.glTexCoord2f(textureRight, textureUp);
       GL11.glVertex2f(width, -height);
 

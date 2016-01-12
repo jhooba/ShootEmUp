@@ -21,9 +21,8 @@ public class HomingMissile extends AnimatedEntity {
   private float smokeAccumulator = 0;
 
   public HomingMissile(Layer targetLayer, float maxRadianManiAbility) {
-    super(MISSILE, 0.25f);
+    super(MISSILE, 0.25f, 40);
     target = acquireNewTarget(targetLayer);
-    animationSpeed = 40;
     life = 2;
     this.maxRadianManiAbility = maxRadianManiAbility;
     init();
@@ -39,13 +38,11 @@ public class HomingMissile extends AnimatedEntity {
 
   @Override
   public void draw() {
-    animationCursor += animationSpeed * tick;
-    animationCursor %= animationTextures.length;
-
+    updateAnimationCursor();
     GL11.glLoadIdentity();
     GL11.glTranslatef(position.x, position.y, Main.DEFAULT_Z);
     GL11.glRotatef(rotation, 0, 0, 1);
-    GL11.glBindTexture(GL11.GL_TEXTURE_2D, animationTextures[(int)animationCursor].getTextureId());
+    GL11.glBindTexture(GL11.GL_TEXTURE_2D, getCursorAnimationTextureId());
     GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
     GL11.glBegin(GL11.GL_QUADS);

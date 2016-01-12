@@ -10,27 +10,19 @@ public class PlayerSpeed extends AnimatedEntity {
   private final PlayerShip playerShip;
 
   public PlayerSpeed(PlayerShip playerShip) {
-    super(PLAYER_SPEED, 0.75f);
+    super(PLAYER_SPEED, 0.75f, 30.4f);
     this.playerShip = playerShip;
-    animationSpeed = 30.4f;
-    animationCursor = 1;
+    setAnimationCursor(1);
     init();
   }
 
   @Override
   public void draw() {
-    if (displayAnimation) {
-      if (animationCursor > 0) {
-        animationCursor += animationSpeed * tick;
-        if (animationCursor >= animationTextures.length) {
-          animationCursor = 0;
-        }
-      }
-    }
+    updateAnimationCursor();
     GL11.glColor4f(1, 1, 1, 1);
     GL11.glLoadIdentity();
     GL11.glTranslatef(playerShip.position.x - 58, playerShip.position.y - 10, Main.DEFAULT_Z);
-    GL11.glBindTexture(GL11.GL_TEXTURE_2D, animationTextures[(int)animationCursor].getTextureId());
+    GL11.glBindTexture(GL11.GL_TEXTURE_2D, getCursorAnimationTextureId());
     GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
     GL11.glBegin(GL11.GL_QUADS);
     {
@@ -53,6 +45,6 @@ public class PlayerSpeed extends AnimatedEntity {
   @Override
   public void stopAnimation() {
     displayAnimation = false;
-    animationCursor = 1;
+    setAnimationCursor(1);
   }
 }

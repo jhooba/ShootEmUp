@@ -10,8 +10,8 @@ public abstract class Weapon extends AnimatedEntity {
   // This field hold the blast charge..
   protected float chargeAnimationCursor;
 
-  protected Weapon(PlayerShip playerShip, int type, float ratio) {
-    super(type, ratio);
+  protected Weapon(PlayerShip playerShip, int type, float ratio, float animationSpeed) {
+    super(type, ratio, animationSpeed);
     this.playerShip = playerShip;
   }
 

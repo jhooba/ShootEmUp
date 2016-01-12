@@ -13,7 +13,7 @@ import rtype.Main;
  */
 public class PlayerShip extends AnimatedEntity {
   public static final float MAX_POWER = 4.f;
-  private static final float ACCELLERATION = 1000;
+  private static final float ACCELERATION = 1000;
   private static final float MAX_SPEED = 230;
   private static final float DEFAULT_DECELERATION = 700;
   private static final float POWER_SPEED = 2f;
@@ -29,7 +29,7 @@ public class PlayerShip extends AnimatedEntity {
   private BitUpgrade booster2 = null;
 
   public PlayerShip() {
-    super(PLAYER_SHIP, 0.25f);
+    super(PLAYER_SHIP, 0.25f, 0f);
     init();
     concentrateAnimation.spawn(new Vector2f(0, 0), new Vector2f(0, 0), Main.fx);
     accelerateEntity.spawn(new Vector2f(0, 0), new Vector2f(0, 0), Main.fx);
@@ -102,7 +102,7 @@ public class PlayerShip extends AnimatedEntity {
     KeyListener upKeyEvent = new KeyListener() {
       @Override
       public void keyPressed() {
-        speed.y += ACCELLERATION * tick;
+        speed.y += ACCELERATION * tick;
         if (speed.y > MAX_SPEED) {
           speed.y = MAX_SPEED;
         }
@@ -117,7 +117,7 @@ public class PlayerShip extends AnimatedEntity {
     KeyListener downKeyEvent = new KeyListener() {
       @Override
       public void keyPressed() {
-        speed.y -= ACCELLERATION * tick;
+        speed.y -= ACCELERATION * tick;
         if (speed.y < -MAX_SPEED) {
           speed.y = -MAX_SPEED;
         }
@@ -132,7 +132,7 @@ public class PlayerShip extends AnimatedEntity {
     KeyListener leftKeyEvent = new KeyListener() {
       @Override
       public void keyPressed() {
-        speed.x -= ACCELLERATION * tick;
+        speed.x -= ACCELERATION * tick;
         if (speed.x < -MAX_SPEED) {
           speed.x = -MAX_SPEED;
         }
@@ -147,7 +147,7 @@ public class PlayerShip extends AnimatedEntity {
     KeyListener rightKeyEvent = new KeyListener() {
       @Override
       public void keyPressed() {
-        speed.x += ACCELLERATION * tick;
+        speed.x += ACCELERATION * tick;
         if (speed.x > MAX_SPEED) {
           speed.x = MAX_SPEED;
           accelerateEntity.startAnimation();
