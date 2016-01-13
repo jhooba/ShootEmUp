@@ -45,6 +45,7 @@ public abstract class Entity implements IEntity {
   private float frozenTickCounter = 0;
   private float freezeDuration = 0;
   private float freezingPercentage = 0;
+  public float distanceFromOrb = 0;
 
   protected Entity(int type, float ratio) {
     this.type = type;
@@ -187,6 +188,12 @@ public abstract class Entity implements IEntity {
     } else {
       tick = Main.tick;
     }
+  }
+
+  public void freeze(float freezeDuration, float freezeSpeed) {
+    this.freezeDuration = freezeDuration;
+    this.freezeSpeed = freezeSpeed;
+    freezing = true;
   }
 
   public Layer getLayer() {

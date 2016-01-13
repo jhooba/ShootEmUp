@@ -3,7 +3,7 @@ package rtype;
 import rtype.entity.Bonus;
 import rtype.entity.BonusBooster;
 import rtype.entity.BonusCrystalOrb;
-import rtype.entity.BonusLightningOrb;
+import rtype.entity.BonusLighteningOrb;
 import rtype.entity.BonusMagneticOrb;
 import rtype.entity.BonusRapidShootOrb;
 import rtype.entity.IEntity;
@@ -19,7 +19,7 @@ public class BonusFactory {
         b = new BonusBooster();
         break;
       case IEntity.BONUS_LIGHTNING_ORB :
-        b = new BonusLightningOrb();
+        b = new BonusLighteningOrb();
         break;
       case IEntity.BONUS_GRAVITY_ORB :
         b = new BonusMagneticOrb();

@@ -8,11 +8,9 @@ import rtype.Main;
  * Created by jhooba on 2016-01-02.
  */
 public class Blaster extends Weapon {
-
   public Blaster(PlayerShip playerShip) {
-    super(playerShip, FORCE_CHARGE, 0.55f);
+    super(playerShip, FORCE_CHARGE, 0.55f, 28.4f);
     init();
-    animationSpeed = 28.4f;
   }
 
   @Override
@@ -22,12 +20,11 @@ public class Blaster extends Weapon {
     }
     GL11.glColor4f(0, 1, 1, 1);
 
-    animationCursor += animationSpeed * tick;
-    animationCursor %= animationTextures.length;
+    updateAnimationCursor();
 
     GL11.glLoadIdentity();
     GL11.glTranslatef(playerShip.position.x + width + 13, playerShip.position.y + 3, Main.DEFAULT_Z);
-    GL11.glBindTexture(GL11.GL_TEXTURE_2D, animationTextures[(int)animationCursor].getTextureId());
+    GL11.glBindTexture(GL11.GL_TEXTURE_2D, getCursorAnimationTextureId());
     GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
     GL11.glBegin(GL11.GL_QUADS);
     {
@@ -50,5 +47,16 @@ public class Blaster extends Weapon {
   public void fire(float chargePercentage) {
     ForceBlast fb = new ForceBlast(chargePercentage * 1.3f);
     fb.spawn(playerShip.position, new Vector2f(770, 0), Main.bullets);
+  }
+
+  @Override
+  public void startChargingAnimation() {
+    displayChargeAnimation = true;
+  }
+
+  @Override
+  public void stopChargeAnimation() {
+    displayChargeAnimation = false;
+    animationCursor = 0;
   }
 }

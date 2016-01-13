@@ -6,7 +6,6 @@ import org.lwjgl.opengl.GL11;
  * Created by jhooba on 2015-12-27.
  */
 public class Planet extends Entity {
-
   public Planet() {
     super(PLANET, 0.65f);
     rotation = 180;

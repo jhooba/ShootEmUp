@@ -7,4 +7,9 @@ public class BonusBooster extends Bonus {
   public BonusBooster() {
     super(BONUS_BOOSTER);
   }
+
+  @Override
+  public void boostPlayerShip(PlayerShip ship) {
+    ship.addBooster();
+  }
 }

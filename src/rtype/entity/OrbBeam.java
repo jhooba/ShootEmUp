@@ -22,7 +22,7 @@ public class OrbBeam extends Entity {
   private final ArrayList<Vector2f> meltingPoints = new ArrayList<>();
   private final float thickness;
 
-  public OrbBeam(LightningOrb orb, Vector2f[] p, float thickness, boolean way, float r, float g, int b, float a,
+  public OrbBeam(LighteningOrb orb, Vector2f[] p, float thickness, boolean way, float r, float g, int b, float a,
                  int modulo, float minimalArcHeight) {
     super(ORB_BEAM, 1.f);
     this.disappearanceSpeed = a * 1.7f;

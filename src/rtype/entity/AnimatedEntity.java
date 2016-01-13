@@ -12,7 +12,7 @@ public abstract class AnimatedEntity extends Entity {
   protected Texture[] animationTextures;
   private float animationSpeed = 4.4f;
   // This field hold the blast charge..
-  private float animationCursor;
+  protected float animationCursor;
 
   protected AnimatedEntity(int type, float ratio, float animationSpeed) {
     super(type, ratio);

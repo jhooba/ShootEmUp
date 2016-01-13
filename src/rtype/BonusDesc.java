@@ -6,11 +6,11 @@ import org.lwjgl.util.vector.Vector2f;
 
 import rtype.entity.BonusBooster;
 import rtype.entity.BonusCrystalOrb;
-import rtype.entity.BonusLightningOrb;
+import rtype.entity.BonusLighteningOrb;
 import rtype.entity.BonusMagneticOrb;
 import rtype.entity.BonusRapidShootOrb;
 import rtype.entity.CrystalOrb;
-import rtype.entity.LightningOrb;
+import rtype.entity.LighteningOrb;
 import rtype.entity.MagneticOrb;
 import rtype.entity.PlayerShip;
 import rtype.entity.RapidFireOrb;
@@ -43,7 +43,7 @@ public class BonusDesc {
     int pointY = ORIGIN_Y;
 
     PlayerShip lightning = new PlayerShip();
-    LightningOrb lorb = new LightningOrb(lightning);
+    LighteningOrb lorb = new LighteningOrb(lightning);
 
     PlayerShip rapid = new PlayerShip();
     RapidFireOrb rforb = new RapidFireOrb(rapid);
@@ -56,7 +56,7 @@ public class BonusDesc {
 
     PlayerShip booster = new PlayerShip();
 
-    BonusLightningOrb lBonus = new BonusLightningOrb();
+    BonusLighteningOrb lBonus = new BonusLighteningOrb();
     BonusRapidShootOrb rBonus = new BonusRapidShootOrb();
     BonusMagneticOrb mBonus = new BonusMagneticOrb();
     BonusCrystalOrb cBonus = new BonusCrystalOrb();

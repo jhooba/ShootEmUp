@@ -242,4 +242,15 @@ public class PlayerShip extends AnimatedEntity {
       speed.y = 0;
     }
   }
+
+  public void setOrb(Orb orb) {
+    if (this.orb != null) {
+      if (this.orb.type == orb.type) {
+        return;
+      }
+      this.orb.unSpawn();
+    }
+    this.orb = orb;
+    this.orb.spawn(new Vector2f(-430, 0), new Vector2f(0, 0), Main.bullets);
+  }
 }

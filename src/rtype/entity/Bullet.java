@@ -7,10 +7,8 @@ import rtype.Main;
  * Created by jhooba on 2016-01-01.
  */
 public class Bullet extends Entity {
-  private int life = 20;
-
-  protected Bullet(int type) {
-    super(type, 0.5f);
+  protected Bullet(int type, float ratio) {
+    super(type, ratio);
   }
 
   @Override

@@ -72,4 +72,15 @@ public class CrystalOrb extends Orb {
       }
     }
   }
+
+  private void insertInDescDistanceFromOrb(Entity enemy) {
+    int i = 0;
+    for (Entity e : enemiesToFreeze) {
+      if (e.distanceFromOrb > enemy.distanceFromOrb) {
+        break;
+      }
+      ++i;
+    }
+    enemiesToFreeze.add(i, enemy);
+  }
 }

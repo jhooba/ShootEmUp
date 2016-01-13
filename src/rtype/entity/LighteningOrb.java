@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by jhooba on 2015-12-30.
  */
-public class LightningOrb extends Orb {
+public class LighteningOrb extends Orb {
   private static final float FIRE_RATE_LIMIT = 2;
   private static final float MIN_BEAM_HEIGHT = 50;
   private static final float BULLET_FIRE_RATE = 40;
@@ -19,7 +19,7 @@ public class LightningOrb extends Orb {
   private float minOrdonneeOrigine = 0;
   private float maxOrdonneeOrigine = 0;
 
-  public LightningOrb(PlayerShip playerShip) {
+  public LighteningOrb(PlayerShip playerShip) {
     super(playerShip, BLUE_ORB);
     init();
   }

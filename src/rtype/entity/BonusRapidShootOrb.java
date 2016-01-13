@@ -7,4 +7,9 @@ public class BonusRapidShootOrb extends Bonus {
   public BonusRapidShootOrb() {
     super(BONUS_RAPID_SHOOT_ORB);
   }
+
+  @Override
+  public void boostPlayerShip(PlayerShip ship) {
+    ship.setOrb(new RapidFireOrb(ship));
+  }
 }

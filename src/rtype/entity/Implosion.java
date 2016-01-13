@@ -4,11 +4,11 @@ import org.lwjgl.opengl.GL11;
 import rtype.Main;
 
 /**
- * Created by jhooba on 2016-01-01.
+ * Created by jhooba on 2016-01-13.
  */
-public class BulletHit extends AnimatedEntity {
-  public BulletHit(int type) {
-    super(type, 0.5f, 15);
+public class Implosion extends AnimatedEntity {
+  public Implosion() {
+    super(IMPLOSION, 1f, 25);
     init();
   }
 
@@ -17,18 +17,21 @@ public class BulletHit extends AnimatedEntity {
     if (isLastAnimation()) {
       unSpawn();
       if (Logger.isLogActivate) {
-        Logger.log("Removed bullet-hit from explosion layer.");
+        Logger.log("Removed implosion from explosion layer");
+        return;
       }
-      return;
     }
     updateAnimationCursor();
 
     GL11.glLoadIdentity();
     GL11.glTranslatef(position.x, position.y, Main.DEFAULT_Z);
+
     GL11.glBindTexture(GL11.GL_TEXTURE_2D, getCursorAnimationTextureId());
-    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+    GL11.glBlendFunc(GL11.GL_SRC_ALPHA,GL11.GL_ONE);
+
     GL11.glBegin(GL11.GL_QUADS);
     {
+      GL11.glColor4f(1, 1, 1, 0.65f);
       GL11.glTexCoord2f(textureRight, textureUp);
       GL11.glVertex2f(width, -height);
 

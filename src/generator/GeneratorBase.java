@@ -3,7 +3,7 @@ package generator;
 /**
  * Created by jhooba on 2015-12-20.
  */
-abstract public class GeneratorBase {
+public abstract class GeneratorBase {
   private float delay = 0;
   protected boolean done = false;
 
@@ -14,7 +14,7 @@ abstract public class GeneratorBase {
   protected GeneratorBase () {
   }
 
-  abstract public void generateEntities();
+  public abstract void generateEntities();
 
   public float getDelay() {
     return delay;

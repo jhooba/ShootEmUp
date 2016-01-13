@@ -12,8 +12,9 @@ public class RapidFireBullet extends Bullet {
   private float ghostAccumulator = 0;
 
   public RapidFireBullet(float rotation) {
-    super(BULLET_RAPID_FIRE);
+    super(BULLET_RAPID_FIRE, 0.5f);
     this.rotation = rotation;
+    this.life = 20;
     init();
   }
 
