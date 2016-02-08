@@ -23,6 +23,8 @@ public abstract class AnimatedEntity extends Entity {
     animationTextures = Main.textureLoader.getAnimation(type);
     originalWidth = animationTextures[0].getTextureWidth();
     originalHeight = animationTextures[0].getTextureHeight();
+    width = originalWidth * ratio;
+    height = originalHeight * ratio;
   }
 
   public abstract void draw();

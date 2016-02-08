@@ -15,7 +15,7 @@ public abstract class Entity implements IEntity {
   private static final Vector2f SPEED_DOWN = new Vector2f(30, -23);
 
   protected final int type;
-  private final float ratio;
+  protected final float ratio;
   protected Texture texture;
   protected float originalWidth;
   protected float originalHeight;
