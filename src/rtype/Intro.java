@@ -22,14 +22,14 @@ public class Intro {
     planet.spawn(new Vector2f(320, 0), new Vector2f(-7, 0), Main.background);
     layer = new Layer();
 
-    Text title = new Text(" . Shoot 'Em Up .");
+    Text title = new Text("  Shoot 'Em Up");
     Text commandLabel = new Text("- Commands -");
     Text commandLabel0 = new Text("P         : Pause");
     Text commandLabel1 = new Text("F1        : Start homing missile");
     Text commandLabel2 = new Text("F2        : Start enemy waves");
     Text commandLabel3 = new Text("X         : Detach/Move Orb");
     Text commandLabel4 = new Text("Arrow Key : Move");
-    Text commandLabel5 = new Text("Space     : Fire ( maintain to charge)");
+    Text commandLabel5 = new Text("Space     : Fire (maintain to charge)");
     Text commandLabel6 = new Text("Press SPACE to Start !!");
 
     int pointX = -270;

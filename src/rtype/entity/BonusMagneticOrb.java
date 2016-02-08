@@ -6,6 +6,7 @@ package rtype.entity;
 public class BonusMagneticOrb extends Bonus {
   public BonusMagneticOrb() {
     super(BONUS_GRAVITY_ORB);
+    init();
   }
 
   @Override

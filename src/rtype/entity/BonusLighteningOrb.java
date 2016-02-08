@@ -6,6 +6,7 @@ package rtype.entity;
 public class BonusLighteningOrb extends Bonus {
   public BonusLighteningOrb() {
     super(BONUS_LIGHTNING_ORB);
+    init();
   }
 
   @Override

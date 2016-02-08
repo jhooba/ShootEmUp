@@ -19,15 +19,18 @@ public class Layer {
   }
 
   public void update() {
-    for (Entity e : entities) {
+    //noinspection ForLoopReplaceableByForEach
+    for (int i = 0; i < entities.size(); ++i) {
+      Entity e = entities.get(i);
       e.updateTick();
       e.update();
     }
   }
 
   public void render() {
-    for (Entity e : entities) {
-      e.draw();
+    //noinspection ForLoopReplaceableByForEach
+    for (int i = 0; i < entities.size(); ++i) {
+      entities.get(i).draw();
     }
   }
 }

@@ -124,14 +124,12 @@ public class Main {
 
     BonusDesc bonusDesc = new BonusDesc();
     bonusDesc.play();
-    
-    addBasicEntities();
 
+    addBasicEntities();
     player.addEventListeners();
 
     Bonus b = BonusFactory.createBonus(IEntity.BONUS_LIGHTNING_ORB);
     b.spawn(new Vector2f(player.position.x + 100, player.position.y), DEFAULT_SCROLLING_SPEED, bonus);
-
     addControlKeys();
 
     while (!gameOff) {

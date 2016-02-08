@@ -6,6 +6,7 @@ package rtype.entity;
 public class BonusBooster extends Bonus {
   public BonusBooster() {
     super(BONUS_BOOSTER);
+    init();
   }
 
   @Override

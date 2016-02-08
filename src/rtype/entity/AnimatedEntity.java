@@ -19,7 +19,7 @@ public abstract class AnimatedEntity extends Entity {
     this.animationSpeed = animationSpeed;
   }
 
-  protected void init () {
+  protected void init() {
     animationTextures = Main.textureLoader.getAnimation(type);
     originalWidth = animationTextures[0].getTextureWidth();
     originalHeight = animationTextures[0].getTextureHeight();
