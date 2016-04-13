@@ -14,7 +14,7 @@ public class IntroGenerator extends GeneratorBase {
   private static final float B_S = 7f;
 
   @Override
-  public void generateEntities() {
+  void generateEntities() {
     Planet planet= new Planet();
     planet.spawn(new Vector2f(320, 0), new Vector2f(B_S * -1, 0), Main.background);
 

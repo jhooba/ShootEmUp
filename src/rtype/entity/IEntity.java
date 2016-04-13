@@ -53,6 +53,5 @@ public interface IEntity {
   int ORB_BEAM = 46;
   int ENEMY_BULLET = 47;
   int FORCE_BLAST = 48;
-
-  int BULLET_RAPID_FIRE = 64;
+  int BULLET_RAPID_FIRE = 49;
 }

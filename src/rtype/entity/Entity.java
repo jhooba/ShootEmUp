@@ -15,10 +15,10 @@ public abstract class Entity implements IEntity {
   private static final Vector2f SPEED_DOWN = new Vector2f(30, -23);
 
   protected final int type;
-  protected final float ratio;
-  protected Texture texture;
-  protected float originalWidth;
-  protected float originalHeight;
+  final float ratio;
+  Texture texture;
+  float originalWidth;
+  float originalHeight;
 
   public final Vector2f position = new Vector2f();
   public final Vector2f speed = new Vector2f();
@@ -39,13 +39,13 @@ public abstract class Entity implements IEntity {
 
   private float rotationSpeed = 0;
   float damage = 1;
-  protected float life = 1;
-  protected boolean freezing = false;
-  protected boolean frozen = false;
+  float life = 1;
+  boolean freezing = false;
+  boolean frozen = false;
   private float frozenTickCounter = 0;
   private float freezeDuration = 0;
   private float freezingPercentage = 0;
-  public float distanceFromOrb = 0;
+  float distanceFromOrb = 0;
 
   protected Entity(int type, float ratio) {
     this.type = type;
@@ -190,7 +190,7 @@ public abstract class Entity implements IEntity {
     }
   }
 
-  public void freeze(float freezeDuration, float freezeSpeed) {
+  void freeze(float freezeDuration, float freezeSpeed) {
     this.freezeDuration = freezeDuration;
     this.freezeSpeed = freezeSpeed;
     freezing = true;

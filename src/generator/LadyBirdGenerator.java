@@ -9,24 +9,25 @@ import rtype.entity.LadyBird;
  * Created by jhooba on 2015-12-20.
  */
 public class LadyBirdGenerator extends GeneratorBase {
-  private static final float LADY_SPAWNING_RATE = 0.005f;
+  private static final float INTERVAL = 0.005f;
   private static final Vector2f DEFAULT_LADY_SPEED = new Vector2f(-56.3f, 0);
 
-  private float ladyDeltaAcc = 0;
+  private float interval = 0;
 
   public LadyBirdGenerator(float delay) {
     super(delay);
   }
 
   @Override
-  public void generateEntities() {
-    ladyDeltaAcc += Main.tick;
-    if (ladyDeltaAcc > LADY_SPAWNING_RATE) {
-      ladyDeltaAcc = 0;
-      LadyBird lad = new LadyBird();
-      lad.spawn(
+  void generateEntities() {
+    interval += Main.tick;
+    if (interval > INTERVAL) {
+      interval = 0;
+      LadyBird lady = new LadyBird();
+      lady.spawn(
           new Vector2f(Main.SCREEN_WIDTH / 2 + 10, Main.RANDOM.nextInt() % Main.SCREEN_HEIGHT / 2),
-          DEFAULT_LADY_SPEED, Main.enemies);
+          DEFAULT_LADY_SPEED,
+          Main.enemies);
     }
   }
 }

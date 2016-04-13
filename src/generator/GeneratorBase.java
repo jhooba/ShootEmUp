@@ -5,26 +5,26 @@ package generator;
  */
 public abstract class GeneratorBase {
   private float delay = 0;
-  protected boolean done = false;
+  private boolean done = false;
 
-  protected GeneratorBase (float delay) {
+  GeneratorBase(float delay) {
     this.delay = delay;
   }
 
-  protected GeneratorBase () {
+  GeneratorBase() {
   }
 
-  public abstract void generateEntities();
+  abstract void generateEntities();
 
-  public float getDelay() {
+  float getDelay() {
     return delay;
   }
 
-  public boolean isDone() {
+  boolean isDone() {
     return done;
   }
 
-  protected void setDone() {
+  void setDone() {
     done = true;
   }
 }

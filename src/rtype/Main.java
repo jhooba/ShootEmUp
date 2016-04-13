@@ -86,16 +86,16 @@ public class Main {
       generator = new GeneratorSet();
       generator.addGenerator(new StarGenerator());
       generator.addGenerator(new IntroGenerator());
-      generator.addGenerator(new EnemyWave(100, EnemyWave.RATE));
-      generator.addGenerator(new EnemyWave(150, EnemyWave.RATE / 2));
+      generator.addGenerator(new EnemyWave(100, EnemyWave.INTERVAL));
+      generator.addGenerator(new EnemyWave(150, EnemyWave.INTERVAL / 2));
 
-      generator.addGenerator(new EnemyWave(-100, EnemyWave.RATE + 10));
-      generator.addGenerator(new EnemyWave(-150, EnemyWave.RATE / 2 + 10));
+      generator.addGenerator(new EnemyWave(-100, EnemyWave.INTERVAL + 10));
+      generator.addGenerator(new EnemyWave(-150, EnemyWave.INTERVAL / 2 + 10));
 
-      generator.addGenerator(new EnemyWave(0, EnemyWave.RATE + 20));
-      generator.addGenerator(new EnemyWave(50, EnemyWave.RATE / 2 + 20));
+      generator.addGenerator(new EnemyWave(0, EnemyWave.INTERVAL + 20));
+      generator.addGenerator(new EnemyWave(50, EnemyWave.INTERVAL / 2 + 20));
 
-      generator.addGenerator(new LadyBirdGenerator(EnemyWave.RATE / 2 + 30));
+      generator.addGenerator(new LadyBirdGenerator(EnemyWave.INTERVAL / 2 + 30));
     } catch (LWJGLException e) {
       e.printStackTrace();
     }
