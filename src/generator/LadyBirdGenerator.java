@@ -19,15 +19,13 @@ public class LadyBirdGenerator extends GeneratorBase {
   }
 
   @Override
-  void generateEntities() {
+  public void generateEntities() {
     interval += Main.tick;
     if (interval > INTERVAL) {
       interval = 0;
       LadyBird lady = new LadyBird();
-      lady.spawn(
-          new Vector2f(Main.SCREEN_WIDTH / 2 + 10, Main.RANDOM.nextInt() % Main.SCREEN_HEIGHT / 2),
-          DEFAULT_LADY_SPEED,
-          Main.enemies);
+      lady.spawn(new Vector2f(Main.SCREEN_WIDTH / 2 + 10, Main.RANDOM.nextInt() % Main.SCREEN_HEIGHT / 2),
+                 DEFAULT_LADY_SPEED, Main.enemies);
     }
   }
 }

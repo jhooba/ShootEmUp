@@ -8,7 +8,7 @@ public class Texture {
   private final int textureHeight;
   private final int textureWidth;
 
-  Texture(int textureId, int textureHeight, int textureWidth) {
+  public Texture(int textureId, int textureHeight, int textureWidth) {
     this.textureId = textureId;
     this.textureHeight = textureHeight;
     this.textureWidth = textureWidth;

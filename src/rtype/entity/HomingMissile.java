@@ -87,6 +87,9 @@ public class HomingMissile extends AnimatedEntity {
       }
       return;
     }
+    if (target == null) {
+      return;
+    }
     Vector2f targetCooRelativeToThis = new Vector2f();
     if (target.life <= 0) {
       acquireNewTarget(target.getLayer());

@@ -7,24 +7,24 @@ public abstract class GeneratorBase {
   private float delay = 0;
   private boolean done = false;
 
-  GeneratorBase(float delay) {
+  protected GeneratorBase(float delay) {
     this.delay = delay;
   }
 
-  GeneratorBase() {
+  protected GeneratorBase() {
   }
 
-  abstract void generateEntities();
+  abstract public void generateEntities();
 
-  float getDelay() {
+  public float getDelay() {
     return delay;
   }
 
-  boolean isDone() {
+  public boolean isDone() {
     return done;
   }
 
-  void setDone() {
+  public void setDone() {
     done = true;
   }
 }

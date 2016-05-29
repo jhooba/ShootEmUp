@@ -10,7 +10,7 @@ import rtype.entity.LadyBird;
  * Created by jhooba on 2015-12-20.
  */
 public class EnemyWave extends GeneratorBase {
-  public static float INTERVAL = 2f;  // Rate at which generating entities.
+  public static final float INTERVAL = 2f;  // Rate at which generating entities.
   private static final Vector2f DEFAULT_LADY_SPEED = new Vector2f(-76.3f,0);
   private static final int MAX_UNIT_GENERATED = 5;
 
@@ -24,7 +24,7 @@ public class EnemyWave extends GeneratorBase {
   }
 
   @Override
-  void generateEntities() {
+  public void generateEntities() {
     interval += Main.tick;
     if (interval > INTERVAL) {
       interval = 0;

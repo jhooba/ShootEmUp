@@ -3,6 +3,7 @@ package generator;
 import org.lwjgl.util.vector.Vector2f;
 
 import rtype.Main;
+import rtype.entity.IEntity;
 import rtype.entity.Star;
 
 /**
@@ -15,16 +16,14 @@ public class StarGenerator extends GeneratorBase{
   private float interval = 0;
 
   @Override
-  void generateEntities() {
+  public void generateEntities() {
     interval += Main.tick;
     if (interval > INTERVAL) {
       interval = 0;
-      int starType = Main.RANDOM.nextInt(6) + 11;
+      int starType = IEntity.STAR_1 + Main.RANDOM.nextInt(6);
       Star spawningStar = new Star(starType);
-      spawningStar.spawn(
-          new Vector2f(Main.SCREEN_WIDTH / 2 + 10, Main.RANDOM.nextInt() % Main.SCREEN_HEIGHT / 2),
-          DEFAULT_STAR_SPEED,
-          Main.background);
+      spawningStar.spawn(new Vector2f(Main.SCREEN_WIDTH / 2 + 10, Main.RANDOM.nextInt() % Main.SCREEN_HEIGHT / 2),
+                         DEFAULT_STAR_SPEED, Main.background);
     }
   }
 }

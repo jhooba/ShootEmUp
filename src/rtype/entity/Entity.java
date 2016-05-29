@@ -15,10 +15,10 @@ public abstract class Entity implements IEntity {
   private static final Vector2f SPEED_DOWN = new Vector2f(30, -23);
 
   protected final int type;
-  final float ratio;
-  Texture texture;
-  float originalWidth;
-  float originalHeight;
+  protected final float ratio;
+  protected Texture texture;
+  protected float originalWidth;
+  protected float originalHeight;
 
   public final Vector2f position = new Vector2f();
   public final Vector2f speed = new Vector2f();
@@ -38,14 +38,14 @@ public abstract class Entity implements IEntity {
   public float height;
 
   private float rotationSpeed = 0;
-  float damage = 1;
-  float life = 1;
-  boolean freezing = false;
-  boolean frozen = false;
+  protected float damage = 1;
+  protected float life = 1;
+  protected boolean freezing = false;
+  protected boolean frozen = false;
   private float frozenTickCounter = 0;
   private float freezeDuration = 0;
   private float freezingPercentage = 0;
-  float distanceFromOrb = 0;
+  protected float distanceFromOrb = 0;
 
   protected Entity(int type, float ratio) {
     this.type = type;
@@ -71,7 +71,7 @@ public abstract class Entity implements IEntity {
     this.layer.add(this);
   }
 
-  public void spawn(Vector2f position, Vector2f speed, float rotationSpeed, Layer layer) {
+  public void spawn(Vector2f position, Vector2f speed, Layer layer, float rotationSpeed) {
     spawn(position, speed, layer);
     this.rotationSpeed = rotationSpeed;
   }
@@ -135,19 +135,19 @@ public abstract class Entity implements IEntity {
       unSpawn();
 
       Explosion ex = new Explosion(Main.RANDOM.nextInt(2) + EXPLOSION_1);
-      ex.spawn(position, speed, Main.RANDOM.nextInt(ROTATION_SPEED), Main.frontground);
+      ex.spawn(position, speed, Main.frontground, Main.RANDOM.nextInt(ROTATION_SPEED));
 
       EnemyPiece ep = new EnemyPiece(Main.RANDOM.nextInt(8) + ENEMY_PIECE_1);
-      ep.spawn(position, SPEED_UP, Main.RANDOM.nextInt(ROTATION_SPEED), Main.frontground);
+      ep.spawn(position, SPEED_UP, Main.frontground, Main.RANDOM.nextInt(ROTATION_SPEED));
 
       ep = new EnemyPiece(Main.RANDOM.nextInt(8) + ENEMY_PIECE_1);
-      ep.spawn(position, SPEED_DOWN, Main.RANDOM.nextInt(ROTATION_SPEED), Main.frontground);
+      ep.spawn(position, SPEED_DOWN, Main.frontground, Main.RANDOM.nextInt(ROTATION_SPEED));
 
       ep = new EnemyPiece(Main.RANDOM.nextInt(8) + ENEMY_PIECE_1);
-      ep.spawn(position, new Vector2f(entity.speed.x, speed.y), Main.RANDOM.nextInt(ROTATION_SPEED), Main.frontground);
+      ep.spawn(position, new Vector2f(entity.speed.x, speed.y), Main.frontground, Main.RANDOM.nextInt(ROTATION_SPEED));
 
       ep = new EnemyPiece(Main.RANDOM.nextInt(8) + ENEMY_PIECE_1);
-      ep.spawn(position, new Vector2f(entity.speed.x, -speed.y), Main.RANDOM.nextInt(ROTATION_SPEED), Main.frontground);
+      ep.spawn(position, new Vector2f(entity.speed.x, -speed.y), Main.frontground, Main.RANDOM.nextInt(ROTATION_SPEED));
       return true;
     }
     return false;
@@ -190,7 +190,7 @@ public abstract class Entity implements IEntity {
     }
   }
 
-  void freeze(float freezeDuration, float freezeSpeed) {
+  protected void freeze(float freezeDuration, float freezeSpeed) {
     this.freezeDuration = freezeDuration;
     this.freezeSpeed = freezeSpeed;
     freezing = true;

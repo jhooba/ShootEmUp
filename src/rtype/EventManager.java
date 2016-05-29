@@ -8,14 +8,14 @@ import java.util.ArrayList;
 public class EventManager {
   private static EventManager instance;
 
+  private final ArrayList<KeyListener> listeners = new ArrayList<>();
+
   public static EventManager instance() {
     if (instance == null) {
       instance = new EventManager();
     }
     return instance;
   }
-
-  private final ArrayList<KeyListener> listeners = new ArrayList<>();
 
   public void addListener(int key, KeyListener listener) {
     listener.setKeyMonitored(key);

@@ -14,15 +14,13 @@ public class HomingMissileGenerator extends GeneratorBase {
   private float interval = 0;
 
   @Override
-  void generateEntities() {
+  public void generateEntities() {
     interval += Main.tick;
     if (interval > INTERVAL) {
       interval = 0;
-      HomingMissile hMissile = new HomingMissile(Main.enemies, (float) Math.PI / 1000);
-      hMissile.spawn(
-          new Vector2f(Main.SCREEN_WIDTH / 2 + 10, Main.RANDOM.nextInt() % Main.SCREEN_WIDTH / 2),
-          DEFAULT_MISSILE_SPEED,
-          Main.enemies);
+      HomingMissile missile = new HomingMissile(Main.enemies, (float) Math.PI / 1000);
+      missile.spawn(new Vector2f(Main.SCREEN_WIDTH / 2 + 10, Main.RANDOM.nextInt() % Main.SCREEN_WIDTH / 2),
+                    DEFAULT_MISSILE_SPEED, Main.enemies);
     }
   }
 }

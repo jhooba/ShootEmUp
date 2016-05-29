@@ -14,7 +14,7 @@ public class IntroGenerator extends GeneratorBase {
   private static final float B_S = 7f;
 
   @Override
-  void generateEntities() {
+  public void generateEntities() {
     Planet planet= new Planet();
     planet.spawn(new Vector2f(320, 0), new Vector2f(B_S * -1, 0), Main.background);
 
@@ -23,38 +23,38 @@ public class IntroGenerator extends GeneratorBase {
     trash.spawn(new Vector2f(-20, 100), new Vector2f(B_S * -6, 0), Main.frontground);
 
     trash = new SpaceTrash(IEntity.SPACE_TRASH_5);
-    trash.spawn(new Vector2f(100, 115), new Vector2f(B_S * -5, 0), 10, Main.frontground);
+    trash.spawn(new Vector2f(100, 115), new Vector2f(B_S * -5, 0), Main.frontground, 10);
 
     trash = new SpaceTrash(IEntity.SPACE_TRASH_3);
     trash.rotation = 90;
-    trash.spawn(new Vector2f(-20, -100), new Vector2f(B_S * -7.5f, 0), 2, Main.frontground);
+    trash.spawn(new Vector2f(-20, -100), new Vector2f(B_S * -7.5f, 0), Main.frontground, 2);
 
     trash = new SpaceTrash(IEntity.SPACE_TRASH_3);
-    trash.spawn(new Vector2f(100, -115), new Vector2f(B_S * -4.5f, 0), 2, Main.background);
+    trash.spawn(new Vector2f(100, -115), new Vector2f(B_S * -4.5f, 0), Main.background, 2);
 
     trash = new SpaceTrash(IEntity.SPACE_TRASH_1);
     trash.spawn(new Vector2f(-200, 200), new Vector2f(B_S * -4.5f, 0), Main.frontground);
 
     trash = new SpaceTrash(IEntity.SPACE_TRASH_4);
     trash.flipYAxis();
-    trash.spawn(new Vector2f(-100, 100), new Vector2f(B_S * -4.5f, 0), -4, Main.background);
+    trash.spawn(new Vector2f(-100, 100), new Vector2f(B_S * -4.5f, 0), Main.background, -4);
 
     trash = new SpaceTrash(IEntity.SPACE_TRASH_4);
     trash.flipYAxis();
-    trash.spawn(new Vector2f(100, 115), new Vector2f(B_S * -4.5f, 0), 3, Main.frontground);
+    trash.spawn(new Vector2f(100, 115), new Vector2f(B_S * -4.5f, 0), Main.frontground, 3);
 
     trash = new SpaceTrash(IEntity.SPACE_TRASH_4);
     trash.flipYAxis();
-    trash.spawn(new Vector2f(50, 0), new Vector2f(B_S * -4.5f, 0), -2, Main.background);
+    trash.spawn(new Vector2f(50, 0), new Vector2f(B_S * -4.5f, 0), Main.background, -2);
 
     trash = new SpaceTrash(IEntity.SPACE_TRASH_4);
     trash.flipYAxis();
-    trash.spawn(new Vector2f(-200, -200), new Vector2f(B_S * -4.5f, 0), -2, Main.frontground);
+    trash.spawn(new Vector2f(-200, -200), new Vector2f(B_S * -4.5f, 0), Main.frontground, -2);
 
     trash = new SpaceTrash(IEntity.SPACE_TRASH_4);
     trash.flipYAxis();
     trash.rotation = 200;
-    trash.spawn(new Vector2f(300, -250), new Vector2f(B_S * -4.5f, 0), 2, Main.background);
+    trash.spawn(new Vector2f(300, -250), new Vector2f(B_S * -4.5f, 0), Main.background, 2);
 
     trash = new SpaceTrash(IEntity.SPACE_TRASH_4);
     trash.flipYAxis();
@@ -62,7 +62,7 @@ public class IntroGenerator extends GeneratorBase {
     trash.spawn(new Vector2f(300, -100), new Vector2f(B_S * -4.5f, 0), Main.background);
 
     trash = new SpaceTrash(IEntity.SPACE_TRASH_1);
-    trash.spawn(new Vector2f(5, 8), new Vector2f(-70.3f, 0), 2f, Main.frontground);
+    trash.spawn(new Vector2f(5, 8), new Vector2f(-70.3f, 0), Main.frontground, 2);
 
     Star star = new Star(IEntity.STAR_1);
     star.spawn(new Vector2f(60, -100), new Vector2f(-34.3f, 0), Main.background);
@@ -86,10 +86,10 @@ public class IntroGenerator extends GeneratorBase {
     trash.spawn(new Vector2f(250, 20), new Vector2f(-40.3f, 0), Main.background);
 
     trash = new SpaceTrash(IEntity.SPACE_TRASH_3);
-    trash.spawn(new Vector2f(350, -100), new Vector2f(-25.3f, 0), 2, Main.frontground);
+    trash.spawn(new Vector2f(350, -100), new Vector2f(-25.3f, 0), Main.frontground, 2);
 
     trash = new SpaceTrash(IEntity.SPACE_TRASH_3);
-    trash.spawn(new Vector2f(350, 150), new Vector2f(-27.3f, 0), -2, Main.frontground);
+    trash.spawn(new Vector2f(350, 150), new Vector2f(-27.3f, 0), Main.frontground, -2);
 
     trash = new SpaceTrash(IEntity.SPACE_TRASH_3);
     trash.spawn(new Vector2f(420, 50), new Vector2f(-30.3f, 0), Main.frontground);
