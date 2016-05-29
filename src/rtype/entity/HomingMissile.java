@@ -7,6 +7,7 @@ import rtype.Layer;
 import rtype.Main;
 
 /**
+ * Copied from http://www.fabiensanglard.net/Prototyp/index.php
  * Created by jhooba on 2015-12-27.
  */
 public class HomingMissile extends AnimatedEntity {

@@ -4,6 +4,7 @@ import org.lwjgl.util.vector.Vector2f;
 import rtype.Main;
 
 /**
+ * Copied from http://www.fabiensanglard.net/Prototyp/index.php
  * Created by jhooba on 2015-12-30.
  */
 public class RapidFireOrb extends Orb {

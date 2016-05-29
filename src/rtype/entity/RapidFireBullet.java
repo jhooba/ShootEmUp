@@ -3,6 +3,7 @@ package rtype.entity;
 import rtype.Main;
 
 /**
+ * Copied from http://www.fabiensanglard.net/Prototyp/index.php
  * Created by jhooba on 2016-01-01.
  */
 public class RapidFireBullet extends Bullet {

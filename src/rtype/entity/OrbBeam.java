@@ -7,6 +7,7 @@ import rtype.Main;
 import java.util.ArrayList;
 
 /**
+ * Copied from http://www.fabiensanglard.net/Prototyp/index.php
  * Created by jhooba on 2016-01-02.
  */
 public class OrbBeam extends Entity {

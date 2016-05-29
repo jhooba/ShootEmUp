@@ -4,6 +4,7 @@ import org.jetbrains.annotations.Contract;
 import org.lwjgl.util.vector.Vector2f;
 
 /**
+ * Copied from http://www.fabiensanglard.net/Prototyp/index.php
  * Created by jhooba on 2016-01-01.
  */
 public class GLUtils {

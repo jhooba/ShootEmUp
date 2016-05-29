@@ -7,6 +7,7 @@ import rtype.entity.IEntity;
 import rtype.entity.Star;
 
 /**
+ * Copied from http://www.fabiensanglard.net/Prototyp/index.php
  * Created by jhooba on 2015-12-20.
  */
 public class StarGenerator extends GeneratorBase{

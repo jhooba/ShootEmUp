@@ -16,6 +16,7 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 
 /**
+ * Copied from http://www.fabiensanglard.net/Prototyp/index.php
  * Created by jhooba on 2015-12-20.
  */
 public class TextureLoader {

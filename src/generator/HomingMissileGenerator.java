@@ -5,6 +5,7 @@ import rtype.Main;
 import rtype.entity.HomingMissile;
 
 /**
+ * Copied from http://www.fabiensanglard.net/Prototyp/index.php
  * Created by jhooba on 2015-12-20.
  */
 public class HomingMissileGenerator extends GeneratorBase {

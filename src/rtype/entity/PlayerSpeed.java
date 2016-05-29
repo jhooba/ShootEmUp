@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 import rtype.Main;
 
 /**
+ * Copied from http://www.fabiensanglard.net/Prototyp/index.php
  * Created by jhooba on 2016-01-02.
  */
 public class PlayerSpeed extends AnimatedEntity {

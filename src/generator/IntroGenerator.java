@@ -8,6 +8,7 @@ import rtype.entity.SpaceTrash;
 import rtype.entity.Star;
 
 /**
+ * Copied from http://www.fabiensanglard.net/Prototyp/index.php
  * Created by jhooba on 2015-12-20.
  */
 public class IntroGenerator extends GeneratorBase {

@@ -6,6 +6,7 @@ import rtype.Layer;
 import rtype.Main;
 
 /**
+ * Copied from http://www.fabiensanglard.net/Prototyp/index.php
  * Created by jhooba on 2016-01-06.
  */
 public class BitUpgrade extends Weapon {

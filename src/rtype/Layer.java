@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import rtype.entity.Entity;
 
 /**
+ * Copied from http://www.fabiensanglard.net/Prototyp/index.php
  * Created by jhooba on 2015-12-20.
  */
 public class Layer {

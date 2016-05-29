@@ -3,6 +3,7 @@ package rtype.entity;
 import org.lwjgl.opengl.GL11;
 
 /**
+ * Copied from http://www.fabiensanglard.net/Prototyp/index.php
  * Created by jhooba on 2015-12-28.
  */
 public class Star extends Entity {

@@ -4,6 +4,7 @@ import org.lwjgl.util.vector.Vector2f;
 import rtype.Main;
 
 /**
+ * Copied from http://www.fabiensanglard.net/Prototyp/index.php
  * Created by jhooba on 2016-01-01.
  */
 public class Bullet extends Entity {
