@@ -55,9 +55,6 @@ public class PlayerShip extends AnimatedEntity {
   @Override
   public void draw() {
     GL11.glLoadIdentity();
-    // TODO 왜 넣었다가 빼는 거냐
-    GL11.glPushMatrix();
-    GL11.glPopMatrix();
 
     GL11.glTranslatef(position.x, position.y, Main.DEFAULT_Z);
     int animationFrame = (int)(speed.y * 4 / MAX_SPEED);
